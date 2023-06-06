@@ -1,14 +1,20 @@
 class TravelsController < ApplicationController
+  before_action :set_travel, only: %i[show edit update destroy]
+
   def index
+    @travels = Travel.all
+  end
+
+  def new
+    @travel = Travel.new
   end
 
   def show
   end
 
-  def new
-  end
-
   def create
+    @travel = Travel.new(params_travel)
+    @travel.user = current_user
   end
 
   def edit
@@ -18,5 +24,13 @@ class TravelsController < ApplicationController
   end
 
   def destroy
+    @travel.destroy
+    redirect_to dashboard_path
+  end
+
+  private
+
+  def set_travel
+    @travel = Travel.find(params[:id])
   end
 end
