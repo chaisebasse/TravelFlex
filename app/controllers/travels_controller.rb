@@ -18,6 +18,7 @@ class TravelsController < ApplicationController
   end
 
   def edit
+    redirect_to travel_path(@travel)
   end
 
   def update
