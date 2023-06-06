@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :travel
-  resources :activity, only: %i[update destroy]
+  resources :travels
+  resources :activities, only: %i[update destroy]
   get "dashboard", to: "pages#dashboard"
 end
