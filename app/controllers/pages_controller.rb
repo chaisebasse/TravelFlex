@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     @travels = Travel.all
 
     classe = ".lazy"
-    country = "liechtenstein"
+    country = "paris"
     url = "https://www.routard.com/guide/code_dest/#{country}.htm"
     html_file = URI.open(url).read
 
@@ -38,8 +38,8 @@ def search_results
   choices = response['choices']
   @destinations_array = choices[0]['text']
 end
-  
- def dashboard
+
+  def dashboard
     if user_signed_in?
       @travels = current_user.travels
     else
