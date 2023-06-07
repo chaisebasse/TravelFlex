@@ -1,2 +1,18 @@
-<h1>C'est le site TravelFlex</h1>
-<p>Valentine, Luc, Martin, Chaise</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(<%= asset_path('Vigne.jpg')%>);">
+  <div class="container">
+    <h1 class="text-center"><strong>Choisissez TravelFlex</strong></h1>
+    <p class="text-center">Pour voyager, il faut être flex</p>
+      <div class="cards-homepage mt-4">
+        <div class="d-flex justify-content-center gap-3">
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Vigne.jpg')%>)">
+            Je suis vigneron
+              <%= link_to "Ma destination",  travels_path, class: "btn-bordeaux" %>
+          </div>
+
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Vigne.jpg')%>)">
+              <%= link_to "Inspirez-moi", travels_path, class: "btn-bordeaux" %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
