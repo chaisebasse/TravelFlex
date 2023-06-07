@@ -1,3 +1,23 @@
 destinations
+<%# <% raise %>
+<div class="container">
+<div class="row">
+<% params[:result].each do |destination| %>
+<div class="card col-2">
 
-Cards choix des destinations
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><p><%= destination["country"] %></p></h5>
+    <p class="card-text"><p><%= destination["city"] %></p></p>
+    <a href="#" class="btn btn-primary">En savoir plus</a>
+  </div>
+</div>
+
+
+</div>
+<% end %>
+
+</div>
+
+</div>
