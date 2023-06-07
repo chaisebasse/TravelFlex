@@ -13,9 +13,6 @@ class PagesController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-  
-=======
   # def search
   #   @travel = Travel.new
   # end
@@ -32,5 +29,4 @@ class PagesController < ApplicationController
   # def travel_params
   #   params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
   # end
->>>>>>> master
 end
