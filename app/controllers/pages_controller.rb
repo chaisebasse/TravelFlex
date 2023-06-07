@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     @travels = Travel.all
 
     classe = ".lazy"
-    country = "liechtenstein"
+    country = "paris"
     url = "https://www.routard.com/guide/code_dest/#{country}.htm"
     html_file = URI.open(url).read
 
