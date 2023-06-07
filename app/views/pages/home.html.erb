@@ -5,7 +5,6 @@
       <div class="cards-homepage mt-4">
         <div class="d-flex justify-content-center gap-3">
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Vigne.jpg')%>)">
-            Je suis vigneron
               <%= link_to "Ma destination",  travels_path, class: "btn-bordeaux" %>
           </div>
 
@@ -16,3 +15,7 @@
       </div>
   </div>
 </div>
+
+<h1>Photo Details</h1>
+<img src="<%= @img_src %>" alt="Target Photo">
+<p><%= @text_content %></p>
