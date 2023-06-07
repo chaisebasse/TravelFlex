@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+
+
+gem "ruby-openai"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 
@@ -77,3 +81,11 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+
+response = client.completions(
+parameters: {
+model: "text-davinci-003",
+prompt: "Give me hash in JSON of 5 destinations, budget 2000€ for a couple near the sea max 10 token/countrie:{destination:, lat:, long:}",
+max_tokens: 150
+})
