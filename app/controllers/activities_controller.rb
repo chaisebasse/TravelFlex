@@ -17,8 +17,6 @@ class ActivitiesController < ApplicationController
     params.require(:activity).permit(:title, :long, :lat, :status, :activity_img_url)
   end
 
-  private
-
   def set_activity
     @activity = Activity.find(params[:id])
   end
