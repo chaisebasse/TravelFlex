@@ -31,21 +31,27 @@ def search_results
   response = client.completions(
     parameters: {
       model: "text-davinci-003",
-      prompt: "Give me a JSON of 5 destinations, budget #{params[budget]}for a #{params[type_of_travelers]}
-      #{params[type_of_destination]} #{params[duration]} max 10 token / x:{country:, city:, lat:, long:}",
-      max_tokens: 200
+      prompt: 'Give me an array of 5 destinations, budget #{params[:budget]} for a
+      #{params[:type_of_travelers]} #{params[:type_of_destination]} #{params[:duration]} max 10 token / [{"country":, "city":, "lat":, "long":}]',
+      max_tokens: 350
   })
   choices = response['choices']
-  @destinations_array = choices[0]['text']
+  destinations = response['choices'][0]['text']
+  @destinations_array = JSON.parse(destinations)
+  redirect_to destinations_path(result:@destinations_array)
 end
 
-  def dashboard
+ def dashboard
     if user_signed_in?
       @travels = current_user.travels
     else
       redirect_to new_user_session_path
     end
   end
+
+  def destinations
+    end
+
 
   # def search
   #   @travel = Travel.new
