@@ -84,10 +84,3 @@ group :test do
   gem "webdrivers"
 end
 
-
-response = client.completions(
-parameters: {
-model: "text-davinci-003",
-prompt: "Give me hash in JSON of 5 destinations, budget 2000€ for a couple near the sea max 10 token/countrie:{destination:, lat:, long:}",
-max_tokens: 150
-})

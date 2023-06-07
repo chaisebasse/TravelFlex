@@ -1,35 +1,17 @@
-destinations
-Cards choix des destinations
 <div class="container">
-  <div class="cards mt-4">
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis Flex
-      <%= link_to "Destination",  dashboard_path, class: "btn btn-primary" %>
-    </div>
+  <div class="row">
+    <% params[:result].each do |destination| %>
+      <div class="card col-2">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="..." alt="Card image cap">
 
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis un Frérot
-      <%= link_to "Destination", dashboard_path, class: "btn btn-primary" %>
-    </div>
-
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis Ermanno
-      <%= link_to "Destination", dashboard_path, class: "btn btn-primary" %>
-    </div>
-
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis Luc
-      <%= link_to "Destination", dashboard_path, class: "btn btn-primary" %>
-    </div>
-
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis Martin
-      <%= link_to "Destination", dashboard_path, class: "btn btn-primary" %>
-    </div>
-
-    <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-      Je suis Valentine
-      <%= link_to "Destination", dashboard_path, class: "btn btn-primary" %>
-    </div>
+          <div class="card-body">
+            <h5 class="card-title"><p><%= destination["country"] %></p></h5>
+            <p class="card-text"><p><%= destination["city"] %></p></p>
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
