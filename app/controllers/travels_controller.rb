@@ -15,7 +15,7 @@ class TravelsController < ApplicationController
   end
 
   def create
-    @travel = Travel.new(params_travel)
+    @travel = Travel.new(travel_params)
     @travel.user = current_user
   end
 
@@ -67,5 +67,9 @@ class TravelsController < ApplicationController
 
   def set_travel
     @travel = Travel.find(params[:id])
+  end
+
+  def travel_params
+    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
   end
 end

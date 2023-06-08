@@ -1,21 +1,17 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('gifhomepage.gif')%>)">
   <div class="container">
     <h1 class="text-center"><strong>Choisissez TravelFlex</strong></h1>
+
     <p class="text-center">Pour voyager, il faut être flex</p>
       <div class="cards-homepage mt-4">
         <div class="d-flex justify-content-center gap-3">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Vigne.jpg')%>)">
-              <%= link_to "Ma destination",  travels_path, class: "" %>
-          </div>
+          <%= form_tag(travels_path, method: "get") do %>
+            <%= text_field_tag :destination, "", placeholder: "Ma destination" %>
+            <%= submit_tag "Go", class: "btn-home" %>
+          <% end %>
 
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Vigne.jpg')%>)">
-              <%= link_to "Inspirez-moi", travels_path, class: "btn-ok" %>
-          </div>
+          <%= link_to "Inspirez-moi", search_path, class: "btn-home" %>
         </div>
       </div>
   </div>
 </div>
-
-<h1>Photo Details</h1>
-<img src="<%= @img_src %>" alt="Target Photo">
-<p><%= @text_content %></p>
