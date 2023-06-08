@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :activities, only: %i[update destroy]
   get "search", to: "pages#search"
-  post "search", to: "pages#search"
+  post "search", to: "pages#search_results"
   get "destinations", to: "pages#destinations"
   get "dashboard", to: "pages#dashboard"
 end
