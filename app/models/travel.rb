@@ -3,4 +3,5 @@ class Travel < ApplicationRecord
   has_many :steps
 
   validates :budget, presence: true
+  
 end
