@@ -5,7 +5,10 @@
     <p class="text-center">Pour voyager, il faut être flex</p>
       <div class="cards-homepage mt-4">
         <div class="d-flex justify-content-center gap-3">
-          <%= link_to "Ma destination",  travels_path, class: "btn-home" %>
+          <%= form_tag(travels_path, method: "get") do %>
+            <%= text_field_tag :destination, "", placeholder: "Ma destination" %>
+            <%= submit_tag "Go", class: "btn-home" %>
+          <% end %>
 
           <%= link_to "Inspirez-moi", search_path, class: "btn-home" %>
         </div>
