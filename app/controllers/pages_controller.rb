@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       parameters: {
         model: "text-davinci-003",
         prompt: 'Donne moi un array de 5 destinations, budget #{params[:budget]} pour un
-        #{params[:type_of_travelers]},  #{params[:type_of_destination]}, pour une durée de #{params[:duration]} max 10 token / [{"pays":, "ville":, "lat":, "long":}]',
+        #{params[:travelers]},  #{params[:theme]}, pour une durée de #{params[:duration]} max 10 token / [{"pays":, "ville":, "lat":, "long":}]',
         max_tokens: 400
       }
     )
@@ -52,6 +52,7 @@ class PagesController < ApplicationController
         # outer_div = html_doc.css('.home-dest-desc').first
         # nested_div = outer_div.css('div[style]').first
         # p_tag = nested_div.css('p')[0]
+
         # text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
         # @text_content = text_before_br.text.strip
 
@@ -84,7 +85,7 @@ class PagesController < ApplicationController
   #   redirect_to destinations_path
   # end
 
-  # def search
-  #   @travel = Travel.new
-  # end
+  def search
+    @travel = Travel.new
+  end
 end
