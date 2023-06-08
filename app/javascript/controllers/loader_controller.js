@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ['loader']
 
   connect() {
-    console.log("hello");
+
   }
 
   loading(evt) {

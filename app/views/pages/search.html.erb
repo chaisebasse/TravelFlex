@@ -1,8 +1,9 @@
 <div data-controller="loader">
   <%= render "shared/form", travel: @travel %>
 
-  <div class="d-none" data-loader-target="loader" style="padding-top:205.128%;position:relative;">
-    <iframe src="https://gifer.com/embed/6os" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen>
-    </iframe>
+  <div class="d-none" data-loader-target="loader" >
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <%= image_tag "SnoopDogg.gif", class: "h-75"%>
+    </div>
   </div>
 </div>
