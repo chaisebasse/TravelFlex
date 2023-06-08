@@ -10,16 +10,19 @@ class PagesController < ApplicationController
     html_file = URI.open(url).read
 
   def search_results
+    session[:query] = params
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Donne moi un array de 5 destinations, budget #{params[:budget]} pour un
-        #{params[:type_of_travelers]},  #{params[:type_of_destination]}, pour une durée de #{params[:duration]} max 10 token / [{"pays":, "region":, "lat":, "long":}]',
+        prompt: 'Donne moi un JSON de 5 destinations , budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
+        dans #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours en #{params[:moyen de transport]} / [{"pays":, "region":, "lat":, "long":},..]',
         max_tokens: 400
         })
         choices = response['choices']
         destinations = response['choices'][0]['text']
+        # destinations_cleaned = destinations.gsub(/^\s*- /, '')
+        # destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
         destinations_array = JSON.parse(destinations)
         final_array = scraping(destinations_array)
         # raise
