@@ -8,7 +8,9 @@
 
           <div class="card-body">
             <h5 class="card-title"><p><%= destination["pays"] %></p></h5>
-            <p class="card-text"><p><%= destination["ville"] %></p></p>
+            <p class="card-text"><p><%= destination["region"] %></p></p>
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+
           </div>
           <a href="#" class="btn-card-destination">En savoir plus</a>
         </div>
@@ -26,6 +28,9 @@
         <h5 class="modal-title">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <%= raise %>
+    <% end %>
+
       <div class="modal-body">
         <p>Modal body text goes here.</p>
       </div>
@@ -34,5 +39,6 @@
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
+
   </div>
 </div>
