@@ -4,7 +4,10 @@ require "nokogiri"
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home destinations search]
 
-
+    classe = ".lazy"
+    country = "paris"
+    url = "https://www.routard.com/guide/code_dest/#{country}.htm"
+    html_file = URI.open(url).read
 
   def search_results
     client = OpenAI::Client.new

@@ -1,9 +1,20 @@
 <div class="container mt-3">
   <div class="row rowalign-item-center justify-content-center">
+    
+    <div class="card-destination-text">
+      <div class="card-destination" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
+        <h3 class="card-title">Nom destination</h3>
+        <%= link_to "Emmenez-moi !", dashboard_path, class: "btn-ok" %>
+      </div>
+      
+      <p class=p-2>Scrapping d'Ermanno</p>
+    </div>
+
     <% params[:result].each do |destination| %>
       <div class="card col-sm-3 m-2 rounded">
         <div class="card" style="width: auto;">
           <img class="card-img-top" src= <%= destination["img_src"]%> alt="Card image cap">
+          
           <div class="card-body">
             <h5 class="card-title"><p><%= destination["pays"] %></p></h5>
             <p class="card-text"><p><%= destination["region"] %></p></p>
@@ -12,5 +23,6 @@
         </div>
       </div>
     <% end %>
+  
   </div>
 </div>
