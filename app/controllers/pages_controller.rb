@@ -12,7 +12,7 @@ class PagesController < ApplicationController
       parameters: {
         model: "text-davinci-003",
         prompt: 'Donne moi un array de 5 destinations, budget #{params[:budget]} pour un
-        #{params[:type_of_travelers]},  #{params[:type_of_destination]}, pour une durée de #{params[:duration]} max 10 token / [{"pays":, "ville":, "lat":, "long":}]',
+        #{params[:type_of_travelers]},  #{params[:type_of_destination]}, pour une durée de #{params[:duration]} max 10 token / [{"pays":, "region":, "lat":, "long":}]',
         max_tokens: 400
         })
         choices = response['choices']
