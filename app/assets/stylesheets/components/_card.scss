@@ -1,5 +1,7 @@
 .cards {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   // border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -10,9 +12,10 @@
   gap: 16px;
 }
 
-#card-id {
+.card-id {
   border-radius: 10px;
   overflow: hidden;
+  width: 21rem;
   // box-shadow: 5px 3px 10px rgba(0, 0, 0, 0);
 }
 

@@ -1,4 +1,4 @@
-.btn-ok {
+.btn-card-destination {
   border-radius: 8px;
   color: whitesmoke;
   background-color: $ocre-flex;
@@ -7,7 +7,7 @@
   text-decoration: none;
   font-size: 14px;
   position: absolute;
-  bottom: 10px; /* Ajustez cette valeur selon votre besoin */
+  bottom: 10px;
   right: 10px;
 
   &:hover {

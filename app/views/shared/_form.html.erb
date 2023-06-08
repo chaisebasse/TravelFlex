@@ -1,5 +1,6 @@
+
 <div class="container">
-  <%= form_with model: travel, class: 'my-form-class mt-5' do |f| %>
+  <%= form_with model: travel, html: { data: { action: "submit->loader#loading" } }, class: 'my-form-class mt-5' do |f| %>
     <div id="carouselExampleIndicators" class="carousel slide">
       <div class="carousel-inner">
         <div class="carousel-item active">

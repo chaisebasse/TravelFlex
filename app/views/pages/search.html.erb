@@ -1,1 +1,10 @@
-<%= render "shared/form", travel: @travel %>
+<div data-controller="loader">
+  <%= render "shared/formsearch", travel: @travel %>
+
+  <div class="d-none" data-loader-target="loader" >
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <%= image_tag "SnoopDogg.gif", class: "h-75"%>
+    </div>
+  </div>
+
+</div>
