@@ -1,4 +1,4 @@
-<%= form_with model: travel do |f| %>
+<%= form_with model: travel, html: { data: { action: "submit->loader#loading" } } do |f| %>
   <%= f.label :budget %>
   <%= f.text_field :budget %>
   <%= f.label :type_of_travelers %>
