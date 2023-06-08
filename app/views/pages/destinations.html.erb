@@ -1,13 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-3">
+  <div class="row rowalign-item-center justify-content-center">
     <% params[:result].each do |destination| %>
-      <div class="card col-2">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-
+      <div class="card col-sm-3 m-2 rounded">
+        <div class="card" style="width: auto;">
+          <img class="card-img-top" src= <%= destination["img_src"]%> alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title"><p><%= destination["country"] %></p></h5>
-            <p class="card-text"><p><%= destination["city"] %></p></p>
+            <h5 class="card-title"><p><%= destination["pays"] %></p></h5>
+            <p class="card-text"><p><%= destination["ville"] %></p></p>
             <a href="#" class="btn btn-primary">En savoir plus</a>
           </div>
         </div>
