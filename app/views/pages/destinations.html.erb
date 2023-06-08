@@ -3,7 +3,7 @@
 
     <div class="cards">
       <% params[:result].each do |destination| %>
-        <div class="card m-2" id="card-id">
+        <div class="card m-2 card-id">
           <img class="card-img-top" src= <%= destination["img_src"]%> alt="Card image cap">
 
           <div class="card-body">
@@ -11,7 +11,7 @@
             <p class="card-text"><p><%= destination["ville"] %></p></p>
           </div>
 
-          <a href="#" class="btn btn-card-destination">En savoir plus</a>
+          <a href="#" class="btn-card-destination">En savoir plus</a>
         </div>
       <% end %>
     </div>
