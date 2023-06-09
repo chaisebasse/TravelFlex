@@ -80,13 +80,13 @@ class TravelsController < ApplicationController
       activitie.step = day_step
       activitie.save
     end
-    @markers = destinations_array.map do |flat|
-      {
-        lat: day["lat"].to_f,
-        lng: day["lon"].to_f
-      }
-    end
-      redirect_to dashboard_path
+    # @markers = travel.activities.map do |activity|
+    #   {
+    #     lat: activity.lat.to_f,
+    #     lng: activity.long.to_f
+    #   }
+    # end
+    redirect_to dashboard_path
   end
 
   private
