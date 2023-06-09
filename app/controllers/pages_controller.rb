@@ -14,18 +14,16 @@ class PagesController < ApplicationController
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Donne moi un JSON de 5 destinations , budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
-        dans #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours en #{params[:moyen de transport]} / [{"pays":, "region":, "lat":, "long":},..]',
+        prompt: 'Donne moi un JSON en français de 5 destinations (hors France) , budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
+        #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{"pays":, "region":, "lat":, "long":},..]',
         max_tokens: 400
         })
-        choices = response['choices']
-        destinations = response['choices'][0]['text']
-        # destinations_cleaned = destinations.gsub(/^\s*- /, '')
-        # destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
-        destinations_array = JSON.parse(destinations)
-        final_array = scraping(destinations_array)
-        # raise
-       redirect_to destinations_path(result:final_array)
+    destinations = response['choices'][0]['text']
+    destinations_cleaned = destinations.gsub(/^\s*- /, '')
+    destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
+    destinations_array = JSON.parse(destinations_cleaned2)
+    final_array = scraping(destinations_array)
+    redirect_to destinations_path(result:final_array)
   end
 
 
@@ -35,7 +33,7 @@ class PagesController < ApplicationController
   def scraping(destinations)
     response = []
     destinations.each do |destination|
-      if destination["pays".downcase] == "France" || destination["pays".parameterize] == "royaume-uni"
+      if destination["pays".downcase] == "France" || destination["pays".parameterize] == "royaume_uni"
         nil
       else
         classe = ".lazy"
@@ -52,15 +50,15 @@ class PagesController < ApplicationController
         target_photo = photo_div.css(classe).first
         img_src = target_photo['src']
 
-        # outer_div = html_doc.css('.home-dest-desc').first
-        # nested_div = outer_div.css('div[style]').first
-        # p_tag = nested_div.css('p')[0]
+        outer_div = html_doc.css('.home-dest-desc').first
+        nested_div = outer_div.css('div[style]').first
+        p_tag = nested_div.css('p')[0]
 
-        # text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
-        # @text_content = text_before_br.text.strip
+        text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
+        @text_content = text_before_br.text.strip
 
         destination["img_src"] = img_src
-        # destination["@text_content"] = img_src
+        destination["text_content"] = @text_content
       end
       response << destination
     end
