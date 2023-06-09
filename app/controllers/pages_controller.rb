@@ -14,9 +14,9 @@ class PagesController < ApplicationController
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Donne moi un JSON en français de 5 destinations (hors France et Royaume-Uni) que je peux parser sans erreur, budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
-        #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{"pays":, "region":, "lat":, "long":},..]',
-        max_tokens: 500
+        prompt: "J'aimerais recevoir une chaîne JSON valide écrite en français de 5 destinations (hors France et royaume-uni) , budget #{params[:budget]} pour un voyage en #{params[:type_of_travelers]},
+        #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{\"pays\":, \"region\":, \"lat\":, \"long\":},..]",
+        max_tokens: 400
         })
     destinations = response['choices'][0]['text']
     destinations_cleaned = destinations.gsub(/^\s*- /, '')
@@ -26,39 +26,35 @@ class PagesController < ApplicationController
     redirect_to destinations_path(result:final_array)
   end
 
-
   def destinations
   end
 
   def scraping(destinations)
     response = []
     destinations.each do |destination|
-      if destination["pays"].downcase == "France" || destination["pays"].downcase == "royaume-uni"
-      else
-        classe = ".lazy"
-        country = destination["pays"].parameterize.to_s
-        country.strip!
+      classe = ".lazy"
+      country = destination["pays"].parameterize
+      country.strip!
 
-        country = country.gsub!(/-/, '_') if country.include?("-")
+      country = country.gsub!(/-/, '_') if country.include?("-")
 
-        url = "https://www.routard.com/guide/code_dest/#{country}.htm"
-        html_file = URI.open(url).read
-        html_doc = Nokogiri::HTML.parse(html_file)
+      url = "https://www.routard.com/guide/code_dest/#{country}.htm"
+      html_file = URI.open(url).read
+      html_doc = Nokogiri::HTML.parse(html_file)
 
-        photo_div = html_doc.css(".home-destination-media-img-wrapper").first
-        target_photo = photo_div.css(classe).first
-        img_src = target_photo['src']
+      photo_div = html_doc.css(".home-destination-media-img-wrapper").first
+      target_photo = photo_div.css(classe).first
+      img_src = target_photo['src']
 
-        outer_div = html_doc.css('.home-dest-desc').first
-        nested_div = outer_div.css('div[style]').first
-        p_tag = nested_div.css('p')[0]
+      div = html_doc.search('.home-dest-desc p')
+      filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
+      p_tag = filtered_paragraphes.first
 
-        text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
-        @text_content = text_before_br.text.strip
+      text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
+      @text_content = text_before_br.text.strip
 
-        destination["img_src"] = img_src
-        destination["text_content"] = @text_content
-      end
+      destination["img_src"] = img_src
+      destination["text_content"] = @text_content
       response << destination
     end
 

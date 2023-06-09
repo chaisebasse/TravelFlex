@@ -20,7 +20,11 @@
               </div>
               <div class="modal-body">
               <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
-              <%= destination["text_content"] %>
+             <p class="p-2"> <%= destination["text_content"] %></p>
+              <div style="width: 100%; height: 200px;"
+              data-controller="map"
+              data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
