@@ -1,1 +1,24 @@
-Dashboard
+<h1>Dashboard</h1>
+
+<ul>
+  <% Travel.where(user: current_user).each do |t| %>
+    <li>
+      <div>destination: <%= t.destination %></div>
+      <div>budget: <%= t.budget %></div>
+      <div>duration: <%= t.duration %></div>
+      <ul>
+        <% t.activities.each do |a| %>
+          <li>
+            <div>description: <%= a.description %></div>
+            <div>title: <%= a.title %></div>
+            <div>long: <%= a.long %></div>
+            <div>lat: <%= a.lat %></div>
+            <div>jour: <%= a.jour %></div>
+            <div>localisation: <%= a.localisation %></div>
+            <div>description: <%= a.description %></div>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

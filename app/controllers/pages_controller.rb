@@ -14,9 +14,9 @@ class PagesController < ApplicationController
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Donne moi un JSON en français de 5 destinations (hors France) , budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
+        prompt: 'Donne moi un JSON en français de 5 destinations (hors France et Royaume-Uni) que je peux parser sans erreur, budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
         #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{"pays":, "region":, "lat":, "long":},..]',
-        max_tokens: 400
+        max_tokens: 500
         })
     destinations = response['choices'][0]['text']
     destinations_cleaned = destinations.gsub(/^\s*- /, '')
@@ -33,8 +33,7 @@ class PagesController < ApplicationController
   def scraping(destinations)
     response = []
     destinations.each do |destination|
-      if destination["pays".downcase] == "France" || destination["pays".parameterize] == "royaume_uni"
-        nil
+      if destination["pays"].downcase == "France" || destination["pays"].downcase == "royaume-uni"
       else
         classe = ".lazy"
         country = destination["pays"].parameterize.to_s
