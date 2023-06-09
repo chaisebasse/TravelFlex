@@ -1,44 +1,35 @@
 <div class="container mt-3">
   <div class="row rowalign-item-center justify-content-center">
-
     <div class="cards">
-      <% params[:result].each do |destination| %>
+      <% params[:result].each_with_index do |destination, index| %>
         <div class="card m-2 card-id">
-          <img class="card-img-top" src= <%= destination["img_src"]%> alt="Card image cap">
-
+          <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title"><p><%= destination["pays"] %></p></h5>
             <p class="card-text"><p><%= destination["region"] %></p></p>
-            <a href="#" class="btn btn-primary">En savoir plus</a>
-
           </div>
-          <a href="#" class="btn-card-destination">En savoir plus</a>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">En savoir plus</button>
+        </div>
+
+       <div class="modal" id="myModal<%= index %>" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><%= destination["pays"] %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
+              <%= destination["text_content"] %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Choisir cette destination</button>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
-
-  </div>
-</div>
-
-
-<div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <%= raise %>
-    <% end %>
-
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-
   </div>
 </div>

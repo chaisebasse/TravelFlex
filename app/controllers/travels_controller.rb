@@ -44,7 +44,7 @@ class TravelsController < ApplicationController
         model: "text-davinci-003",
         prompt: 'Construis un JSON voyage au #{params[:destination_choice]} par jour avec un itinéraire cohérent (pense au retour) depuis la France, si besoin #{params[:permis de conduire]},
           pour une durée de #{params[:duration]} jours en #{params[:saison]}, #{params[:nombre_activite]} activités par jour/
-          [{"jour": "Activité + description":, "localisation":, "lat":, "long": "moyen de transport":}]',
+          [{"jour": "Activité + description":, "localisation":, "lat": N/S, "long" W/E: "moyen de transport":}]',
         max_tokens: 2000
       })
     destinations = response['choices'][0]['text']
@@ -56,7 +56,7 @@ class TravelsController < ApplicationController
         day_step.travel = travel
         day_step.save
       end
-      activitie = Activity.new(title: day["Activité"] , status: "Pending", long: day["lon"] , lat: day["lat"] , jour: day["jour"] ,localisation: day["localisation"], moyen_de_transport: day["moyen de transport"], description: day["Description"] )
+      activitie = Activity.new(title: day["Activité"], status: "Pending", long: day["lon"] , lat: day["lat"] , jour: day["jour"] ,localisation: day["localisation"], moyen_de_transport: day["moyen de transport"], description: day["Description"] )
       activitie.step = day_step
       activitie.save
     end
