@@ -1,3 +1,4 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(<%= asset_path('search_background.jpg')%>);">
 <div data-controller="loader">
   <%= render "shared/form", travel: @travel %>
   <div class="d-none" data-loader-target="loader" >
@@ -5,5 +6,4 @@
       <%= image_tag "SnoopDogg.gif", class: "h-75"%>
     </div>
   </div>
-
 </div>
