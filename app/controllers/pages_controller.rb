@@ -50,9 +50,9 @@ class PagesController < ApplicationController
         target_photo = photo_div.css(classe).first
         img_src = target_photo['src']
 
-        outer_div = html_doc.css('.home-dest-desc').first
-        nested_div = outer_div.css('div[style]').first
-        p_tag = nested_div.css('p')[0]
+        div = html_doc.search('.home-dest-desc p')
+        filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
+        p_tag = filtered_paragraphes.first
 
         text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
         @text_content = text_before_br.text.strip
