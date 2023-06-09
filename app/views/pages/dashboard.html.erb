@@ -1,28 +1,3 @@
-<h1>Dashboard</h1>
-
-<ul>
-  <% Travel.where(user: current_user).each do |t| %>
-    <li>
-      <div>destination: <%= t.destination %></div>
-      <div>budget: <%= t.budget %></div>
-      <div>duration: <%= t.duration %></div>
-      <ul>
-        <% t.activities.each do |a| %>
-          <li>
-            <div>description: <%= a.description %></div>
-            <div>title: <%= a.title %></div>
-            <div>long: <%= a.long %></div>
-            <div>lat: <%= a.lat %></div>
-            <div>jour: <%= a.jour %></div>
-            <div>localisation: <%= a.localisation %></div>
-            <div>description: <%= a.description %></div>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
-
 <div class="container">
   <div class="justify-content-center align-items-center mt-3">
     <h3 class="text-center"><strong>Choisissez TravelFlex</strong></h3>
@@ -61,8 +36,36 @@
         </div>
       </div>
   </div>
+<h1>Dashboard</h1>
 
-  <div class="justify-content-center align-items-center mt-3">
+<ul>
+  <% Travel.where(user: current_user).each do |t| %>
+    <li>
+      <div>destination: <%= t.destination %></div>
+      <div>budget: <%= t.budget %></div>
+      <div>duration: <%= t.duration %></div>
+      <ul>
+        <% t.activities.each do |a| %>
+
+          <li>
+           <div class="card">
+            <div><h4>Description:</h4> <%= a.description %></div>
+            <div>title: <%= a.title %></div>
+            <div>long: <%= a.long %></div>
+            <div>lat: <%= a.lat %></div>
+            <div>jour: <%= a.jour %></div>
+            <div>localisation: <%= a.localisation %></div>
+            <div>description: <%= a.description %></div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+
+  <%# <div class="justify-content-center align-items-center mt-3">
     <h3 class="text-center"><strong>Votre voyage</strong></h3>
     <div class="col">
       <div class="cards">
@@ -74,7 +77,7 @@
                 <div style="width: 100%; height: 600px;"
                 data-controller="map"
                 data-map-markers-value="<%= @markers.to_json %>"
-                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+                <%# data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div> %> %>
 
                   <%= image_tag 'photo-destination/argentine.jpg', class: "vine-img me-3 w-50" %>
             </div>
