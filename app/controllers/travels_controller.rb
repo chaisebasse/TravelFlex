@@ -42,11 +42,12 @@ class TravelsController < ApplicationController
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Construis un JSON voyage au #{params[:destination_choice]} par jour avec un itinéraire cohérent (pense au retour) depuis la France, si besoin #{params[:permis de conduire]},
+        prompt: "Construis un JSON que je pourrais parser sans erreur pour unvoyage au #{params[:destination_choice]} par jour avec un itinéraire cohérent (pense au retour) depuis la France, si besoin #{params[:permis de conduire]},
           pour une durée de #{params[:duration]} jours en #{params[:saison]}, #{params[:nombre_activite]} activités par jour/
-          [{"jour": "Activité + description":, "localisation":, "lat": N/S, "long" W/E: "moyen de transport":}]',
+          [{"jour": "Activité + description":, "localisation":, "lat": N/S, "long" W/E: "moyen de transport": }]",
         max_tokens: 2000
       })
+
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
     travel = Travel.create(destination: session[:query][:destination] ,travel_img_url: session[:query][:travel_img_url], theme: session[:query][:theme], title: "" , duration: session[:query][:duration] ,budget: session[:query][:duration],travelers:session[:query][:type_of_travelers])
@@ -60,7 +61,13 @@ class TravelsController < ApplicationController
       activitie.step = day_step
       activitie.save
     end
-    redirect_to dashboard_path
+    @markers = destinations_array.map do |flat|
+      {
+        lat: lat: day["lat"].to_f,
+        lng:long: day["lon"].to_f
+      }
+    end
+      redirect_to dashboard_path
   end
 
   private
@@ -73,3 +80,4 @@ class TravelsController < ApplicationController
     params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
   end
 end
+

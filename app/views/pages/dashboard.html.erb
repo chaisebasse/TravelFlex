@@ -46,6 +46,11 @@
                 <div style="width: 50%">
                 Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1
                 </div>
+                <div style="width: 100%; height: 600px;"
+                data-controller="map"
+                data-map-markers-value="<%= @markers.to_json %>"
+                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
                   <%= image_tag 'photo-destination/argentine.jpg', class: "vine-img me-3 w-50" %>
             </div>
       </div>

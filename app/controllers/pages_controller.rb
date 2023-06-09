@@ -14,8 +14,8 @@ class PagesController < ApplicationController
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Donne moi un JSON en français de 5 destinations (hors France) , budget #{params[:budget]} pour un voyage #{params[:type_of_travelers]},
-        #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{"pays":, "region":, "lat":, "long":},..]',
+        prompt: "J'aimerais recevoir une chaîne JSON valide écrite en français de 5 destinations (hors France et royaume-uni) , budget #{params[:budget]} pour un voyage en #{params[:type_of_travelers]},
+        #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{\"pays\":, \"region\":, \"lat\":, \"long\":},..]",
         max_tokens: 400
         })
     destinations = response['choices'][0]['text']
@@ -32,11 +32,9 @@ class PagesController < ApplicationController
   def scraping(destinations)
     response = []
     destinations.each do |destination|
-      if destination["pays".downcase] == "France" || destination["pays".parameterize] == "royaume_uni"
-        nil
-      else
+
         classe = ".lazy"
-        country = destination["pays"].parameterize.to_s
+        country = destination["pays"].parameterize
         country.strip!
 
         country = country.gsub!(/-/, '_') if country.include?("-")
@@ -58,7 +56,6 @@ class PagesController < ApplicationController
 
         destination["img_src"] = img_src
         destination["text_content"] = @text_content
-      end
       response << destination
     end
 
