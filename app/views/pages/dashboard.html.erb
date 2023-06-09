@@ -1,11 +1,55 @@
-Dashboard
+<div class="container">
+  <div class="justify-content-center align-items-center mt-3">
+    <h3 class="text-center"><strong>Choisissez TravelFlex</strong></h3>
+      <div class="row rowalign-item-center justify-content-center">
+        <div class="col">
+          <div class="card">
+            <%= image_tag 'photo-destination/argentine.jpg', class: "card-img-top" %>
+            <div class="card-body">
+              <p class="card-title text-center">Voyage 1</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <%= image_tag 'photo-destination/italie.jpg', class: "card-img-top" %>
+            <div class="card-body">
+              <p class="card-title text-center">Voyage 2</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <%= image_tag 'photo-destination/new-york.jpg', class: "card-img-top" %>
+            <div class="card-body">
+              <p class="card-title text-center">Voyage 3</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <%= image_tag 'photo-destination/nouvelle-zelande.jpg', class: "card-img-top" %>
+            <div class="card-body">
+              <p class="card-title text-center">Voyage 4</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 
-<%#
-  @flats = Flat.all
-
-  @markers = @flats.geocoded.map do |flat|
-    {
-      lat: flat.latitude,
-      lng: flat.longitude
-    }
-  end %>
+  <div class="justify-content-center align-items-center mt-3">
+    <h3 class="text-center"><strong>Votre voyage</strong></h3>
+    <div class="col">
+      <div class="cards">
+         <div class="card-trip-show">
+            <div class="d-flex mx-auto p-2">
+                <div style="width: 50%">
+                Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1Voyage 1
+                </div>
+                  <%= image_tag 'photo-destination/argentine.jpg', class: "vine-img me-3 w-50" %>
+            </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
