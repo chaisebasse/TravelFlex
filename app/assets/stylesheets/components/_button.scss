@@ -30,3 +30,7 @@
     background-color: #2984DA;
   }
 }
+
+input:checked + label {
+  background-color: yellow;
+}
