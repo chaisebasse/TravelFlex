@@ -1,10 +1,9 @@
-
 <div class="container">
   <%= form_with model: travel, url: search_path, html: { data: { action: "submit->loader#loading" } }, class: 'my-form-class mt-5' do |f| %>
-    <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel slide" id="carouselExampleIndicators">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="card-group">
+          <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :budget, '500€', id: 'budget-low' %>
@@ -26,7 +25,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <div class="card-group">
+          <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :type_of_travelers, 'solo', id: 'travelers-solo' %>
@@ -48,7 +47,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <div class="card-group">
+          <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :type_of_destination, 'beach', id: 'destination-beach' %>
@@ -70,7 +69,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <div class="card-group">
+          <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :duration, 'Week-end', id: 'duration-short' %>
@@ -87,6 +86,34 @@
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :duration, '2 semaines', id: 'duration-long' %>
                 <%= f.label :duration_long, "2 semaines" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'spring', id: 'season-spring' %>
+                <%= f.label :season_spring, "Printemps" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'summer', id: 'season-summer' %>
+                <%= f.label :season_summer, "Été" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'autumn', id: 'season-autumn' %>
+                <%= f.label :season_autumn, "Automne" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'winter', id: 'season-winter' %>
+                <%= f.label :season_winter, "Hiver" %>
               </div>
             </div>
           </div>

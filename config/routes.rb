@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post "search", to: "pages#search_results"
   get "destinations", to: "pages#destinations"
   get "dashboard", to: "pages#dashboard"
+  get "details", to: "travels#details"
 end

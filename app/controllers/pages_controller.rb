@@ -32,30 +32,29 @@ class PagesController < ApplicationController
   def scraping(destinations)
     response = []
     destinations.each do |destination|
+      classe = ".lazy"
+      country = destination["pays"].parameterize
+      country.strip!
 
-        classe = ".lazy"
-        country = destination["pays"].parameterize
-        country.strip!
+      country = country.gsub!(/-/, '_') if country.include?("-")
 
-        country = country.gsub!(/-/, '_') if country.include?("-")
+      url = "https://www.routard.com/guide/code_dest/#{country}.htm"
+      html_file = URI.open(url).read
+      html_doc = Nokogiri::HTML.parse(html_file)
 
-        url = "https://www.routard.com/guide/code_dest/#{country}.htm"
-        html_file = URI.open(url).read
-        html_doc = Nokogiri::HTML.parse(html_file)
+      photo_div = html_doc.css(".home-destination-media-img-wrapper").first
+      target_photo = photo_div.css(classe).first
+      img_src = target_photo['src']
 
-        photo_div = html_doc.css(".home-destination-media-img-wrapper").first
-        target_photo = photo_div.css(classe).first
-        img_src = target_photo['src']
+      div = html_doc.search('.home-dest-desc p')
+      filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
+      p_tag = filtered_paragraphes.first
 
-        div = html_doc.search('.home-dest-desc p')
-        filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
-        p_tag = filtered_paragraphes.first
+      text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
+      @text_content = text_before_br.text.strip
 
-        text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
-        @text_content = text_before_br.text.strip
-
-        destination["img_src"] = img_src
-        destination["text_content"] = @text_content
+      destination["img_src"] = img_src
+      destination["text_content"] = @text_content
       response << destination
     end
 
@@ -85,4 +84,5 @@ class PagesController < ApplicationController
   def search
     @travel = Travel.new
   end
+
 end

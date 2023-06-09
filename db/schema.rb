@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_145251) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_102920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_145251) do
     t.string "travel_img_url"
     t.string "theme"
     t.string "title"
-    t.integer "duration"
+    t.string "duration"
     t.integer "budget"
     t.integer "travelers"
     t.date "starting_date"
