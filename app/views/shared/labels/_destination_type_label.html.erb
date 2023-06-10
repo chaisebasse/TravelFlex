@@ -1,0 +1,15 @@
+<div class="d-flex">
+  <% if item == "plage" %>
+    <div>
+      <%= image_tag "carousel/plage.png"%>
+    </div>
+  <% elsif item == "ville" %>
+    <div>
+      <%= image_tag "carousel/ville.png"%>
+    </div>
+  <% else %>
+    <div>
+      <%= image_tag "carousel/montagne.png"%>
+    </div>
+  <% end %>
+</div>

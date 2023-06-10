@@ -1,11 +1,20 @@
 <div class="d-flex">
-  <% if item == "low" %>
+  <% if item == "< 500 €" %>
     <div>
-      <%= item %>
+      <%= image_tag "carousel/500.png"%>
+    </div>
+  <% elsif item == "de 500 € à 1 000 €" %>
+    <div>
+      <%= image_tag "carousel/500_1000.png"%>
     </div>
   <% else %>
     <div>
-      <%= item %>
+      <%= image_tag "carousel/1000.png"%>
     </div>
   <% end %>
 </div>
+
+
+<%# d-flex flex-row justify-content-between align-items-center %>
+
+<%# h-25 d-flex flex-row justify-content-between align-items-center %>

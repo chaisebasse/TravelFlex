@@ -1,11 +1,15 @@
 <div class="d-flex">
-  <% if item == "low" %>
+  <% if item == "week-end" %>
     <div>
-      <%= item %>
+      <%= image_tag "carousel/we.png"%>
+    </div>
+  <% elsif item == "1 semaine" %>
+    <div>
+      <%= image_tag "carousel/1sem.png"%>
     </div>
   <% else %>
     <div>
-      <%= item %>
+      <%= image_tag "carousel/2sem.png"%>
     </div>
   <% end %>
 </div>

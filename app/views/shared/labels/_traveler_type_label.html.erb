@@ -1,0 +1,15 @@
+<div class="d-flex">
+  <% if item == "solo" %>
+    <div>
+      <%= image_tag "carousel/solo.png"%>
+    </div>
+  <% elsif item == "couple" %>
+    <div>
+      <%= image_tag "carousel/couple.png"%>
+    </div>
+  <% else %>
+    <div>
+      <%= image_tag "carousel/famille.png"%>
+    </div>
+  <% end %>
+</div>
