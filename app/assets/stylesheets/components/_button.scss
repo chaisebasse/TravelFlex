@@ -1,7 +1,7 @@
 .btn-card-destination {
   border-radius: 8px;
   color: whitesmoke;
-  background-color: #CC4D23;
+  background-color: #F89821;
   margin-top: 5px;
   padding: 7px;
   text-decoration: none;
@@ -12,21 +12,23 @@
 
   &:hover {
     color: white;
-    background-color: #2984DA;
+    background-color: #A5C7C8
   }
 }
 
 .btn-home {
   border-radius: 8px;
   color: whitesmoke;
-  background-color: $ocre-flex;
+  background-color: #F89821;
   margin-top: 5px;
   padding: 7px;
   text-decoration: none;
+  border: #F89821;
+  font-family: $raleway-font;
 
 
   &:hover {
     color: white;
-    background-color: #2984DA;
+    background-color: #A5C7C8
   }
 }

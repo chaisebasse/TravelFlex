@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: whitesmoke;
+  opacity: 0,5;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -17,4 +18,10 @@
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+.textnavbar {
+  font-family: $raleway-font;
+  margin-right: 26px;
+  margin-top: 7px;
 }
