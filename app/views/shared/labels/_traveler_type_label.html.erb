@@ -1,17 +1,16 @@
 <div class="d-flex align-items-center justify-content-between">
   <% if item == "solo" %>
-    <div>
-      <%= image_tag "carousel/traveler/solo.png", width: 150 %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/traveler/solo.png"%>)">
+      Solo
     </div>
 
   <% elsif item == "couple" %>
-    <div>
-      <%= image_tag "carousel/traveler/couple.png", width: 150  %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/traveler/couple.png"%>)">
+      Couple
     </div>
-
   <% else %>
-    <div>
-      <%= image_tag "carousel/traveler/famille.png", width: 150  %>
-    </div>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/traveler/famille.png"%>)">
+        Famille
+      </div>
   <% end %>
 </div>

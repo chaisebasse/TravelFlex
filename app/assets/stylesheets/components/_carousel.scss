@@ -10,17 +10,29 @@
 }
 
 .carouselnext {
-  right: 50px;
-  top: auto;
-  bottom: auto;
+  right: -120px;
+  bottom: 49px;
 }
 
 .carouselprevious {
-  right: 50px;
-  top: auto;
-  bottom: auto;
+  left: -120px;
+  bottom: 49px;
 }
 
 .carouselstep {
   position: relative;
+}
+
+.category-selector:checked + label {
+  border: solid 3px #2984DA !important;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #CC4D23;
+
+  &:hover {
+    background-color: #2984DA;
+  }
 }

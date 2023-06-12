@@ -1,9 +1,20 @@
 <div class="container">
 
-  <div id="carouselExampleIndicators" class="carousel slide wv-50 vh-50" data-bs-ride="carousel" data-bs-interval="1000000">
+  <div id="carouselExampleIndicators" class="carousel slide wv-50 vh-50" data-bs-ride="carousel" data-bs-interval="3000000">
     <%= simple_form_for travel, url: search_path, html: { class: 'my-form-class mt-5', data: { action: "submit->loader#loading" } } do |f| %>
+
+    <button class="carousel-control-prev carouselprevious" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon btn-card-destination" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next carouselnext" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon btn-card-destination" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
       <div class="carousel-indicators carouselstep">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button " data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -13,36 +24,31 @@
       <div class="carousel-inner">
 
         <div class="carousel-item active">
-          <%= f.input :budget, as: :radio_buttons, legend: false, collection: ['< 500 €', 'de 500 € à 1 000 €', '> 1 000 €'], label_method: lambda { |item| render "shared/labels/budget_label", item: item  }, input_html: { class: "d-none" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          <%= f.input :budget, as: :radio_buttons, legend: false, collection: ['< 500 €', 'de 500 € à 1 000 €', '> 1 000 €'], label_method: lambda { |item| render "shared/labels/budget_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
         </div>
 
         <div class="carousel-item">
-          <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
         </div>
 
         <div class="carousel-item">
-          <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
         </div>
 
         <div class="carousel-item">
-          <%= f.input :theme, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          <%= f.input :type, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
         </div>
 
         <div class="carousel-item">
-          <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
         </div>
 
       </div>
 
-      <button class="carousel-control-prev carouselprevious" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon btn-card-destination" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
+      <div class="text-center mt-4">
+        <%= f.submit "Voyager !", class: 'btn btn-home' %>
+      </div>
 
-      <button class="carousel-control-next carouselnext" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon btn-card-destination" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     <% end %>
   </div>
 </div>

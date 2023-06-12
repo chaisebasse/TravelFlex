@@ -1,17 +1,18 @@
 <div class="d-flex align-items-center justify-content-between">
   <% if item == "week-end" %>
-    <div>
-      <%= image_tag "carousel/duration/we.png", width: 150 %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/duration/duration.png"%>)">
+      Week-end
     </div>
 
+
   <% elsif item == "1 semaine" %>
-    <div>
-      <%= image_tag "carousel/duration/1sem.png", width: 150 %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/duration/duration.png"%>)">
+      1 semaine
     </div>
 
   <% else %>
-    <div>
-      <%= image_tag "carousel/duration/2sem.png", width: 150 %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/duration/duration.png"%>)">
+      2 semaines
     </div>
   <% end %>
 </div>

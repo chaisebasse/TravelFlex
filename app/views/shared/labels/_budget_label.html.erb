@@ -1,19 +1,20 @@
 <div class="d-flex align-items-center justify-content-between">
   <% if item == "< 500 €" %>
 
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path "carousel/budget/500.png"%>)">
-    500€
-
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= image_path "carousel/budget/budget.png"%>)">
+    inf à 500€
     </div>
 
   <% elsif item == "de 500 € à 1 000 €" %>
-    <div>
-      <%= image_tag "carousel/budget/500_1000.png", width: 150  %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= image_path "carousel/budget/budget.png"%>)">
+    500€ à 1 000€
     </div>
 
   <% else %>
     <div>
-      <%= image_tag "carousel/budget/1000.png", width: 150  %>
+       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= image_path "carousel/budget/budget.png"%>)">
+    sup à 1 000€
+    </div>
     </div>
   <% end %>
 </div>
