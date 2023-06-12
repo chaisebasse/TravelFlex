@@ -19,7 +19,7 @@
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <%= f.radio_button :budget, 'high', id: '+1500€' %>
-                <%= f.label :budget_high, "+1500€" %>
+                <%= f.label :budget_high, "+ de 1500€" %>
               </div>
             </div>
           </div>
@@ -28,8 +28,8 @@
           <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_travelers, 'solo', id: 'travelers-solo' %>
-                <%= f.label :travelers_solo, "Voyageurs en solo" %>
+                <%= f.radio_button :type_of_travelers, 'Voyageur seul', id: 'travelers-solo' %>
+                <%= f.label :travelers_solo, "Voyageurs seul" %>
               </div>
             </div>
             <div class="card">
@@ -50,19 +50,19 @@
           <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_destination, 'beach', id: 'destination-beach' %>
+                <%= f.radio_button :type_of_destination, 'Au bord de la mer', id: 'destination-beach' %>
                 <%= f.label :destination_beach, "Plage" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_destination, 'city', id: 'destination-city' %>
+                <%= f.radio_button :type_of_destination, 'En ville', id: 'destination-city' %>
                 <%= f.label :destination_city, "Ville" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_destination, 'mountain', id: 'destination-mountain' %>
+                <%= f.radio_button :type_of_destination, 'a la montagne', id: 'destination-mountain' %>
                 <%= f.label :destination_mountain, "Montagne" %>
               </div>
             </div>
@@ -72,7 +72,7 @@
           <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :duration, 'Week-end', id: 'duration-short' %>
+                <%= f.radio_button :duration, '2 jours', id: 'duration-short' %>
                 <%= f.label :duration_short, "Week-end" %>
               </div>
             </div>
@@ -94,25 +94,25 @@
           <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :season, 'spring', id: 'season-spring' %>
+                <%= f.radio_button :season, 'Au Printemps', id: 'season-spring' %>
                 <%= f.label :season_spring, "Printemps" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :season, 'summer', id: 'season-summer' %>
+                <%= f.radio_button :season, 'En été', id: 'season-summer' %>
                 <%= f.label :season_summer, "Été" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :season, 'autumn', id: 'season-autumn' %>
+                <%= f.radio_button :season, 'En automne', id: 'season-autumn' %>
                 <%= f.label :season_autumn, "Automne" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :season, 'winter', id: 'season-winter' %>
+                <%= f.radio_button :season, 'en Hiver', id: 'season-winter' %>
                 <%= f.label :season_winter, "Hiver" %>
               </div>
             </div>
