@@ -1,3 +1,22 @@
-.carousel {
-  transform: scale(0.25);
+#new_travel {
+  fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  legend {
+    display: none;
+  }
+}
+
+.carouselnext {
+  right: 50px;
+  top: auto;
+  bottom: auto;
+}
+
+.carouselprevious {
+  right: 50px;
+  top: auto;
+  bottom: auto;
 }

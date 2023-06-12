@@ -1,0 +1,22 @@
+<div class="d-flex align-items-center justify-content-between">
+  <% if item == "automn" %>
+    <div>
+      <%= image_tag "carousel/season/automn.png", width: 150 %>
+    </div>
+
+  <% elsif item == "winter" %>
+    <div>
+      <%= image_tag "carousel/season/winter.png", width: 150 %>
+    </div>
+
+  <% elsif item == "spring" %>
+    <div>
+      <%= image_tag "carousel/season/spring.png", width: 150 %>
+    </div>
+
+  <% else %>
+    <div>
+      <%= image_tag "carousel/duration/2sem.png", width: 150 %>
+    </div>
+  <% end %>
+</div>

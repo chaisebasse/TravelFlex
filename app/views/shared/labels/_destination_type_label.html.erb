@@ -1,15 +1,17 @@
-<div class="d-flex">
-  <% if item == "plage" %>
+<div class="d-flex align-items-center justify-content-between">
+  <% if item == "ville" %>
     <div>
-      <%= image_tag "carousel/plage.png"%>
+      <%= image_tag "carousel/destination/ville.png", width: 150  %>
     </div>
-  <% elsif item == "ville" %>
+
+  <% elsif item == "plage" %>
     <div>
-      <%= image_tag "carousel/ville.png"%>
+      <%= image_tag "carousel/destination/plage.png", width: 150  %>
     </div>
+
   <% else %>
     <div>
-      <%= image_tag "carousel/montagne.png"%>
+      <%= image_tag "carousel/destination/montagne.png", width: 150  %>
     </div>
   <% end %>
 </div>

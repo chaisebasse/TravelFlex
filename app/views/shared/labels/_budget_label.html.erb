@@ -1,20 +1,19 @@
-<div class="d-flex">
+<div class="d-flex align-items-center justify-content-between">
   <% if item == "< 500 €" %>
-    <div>
-      <%= image_tag "carousel/500.png"%>
+
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path "carousel/budget/500.png"%>)">
+    500€
+
     </div>
+
   <% elsif item == "de 500 € à 1 000 €" %>
     <div>
-      <%= image_tag "carousel/500_1000.png"%>
+      <%= image_tag "carousel/budget/500_1000.png", width: 150  %>
     </div>
+
   <% else %>
     <div>
-      <%= image_tag "carousel/1000.png"%>
+      <%= image_tag "carousel/budget/1000.png", width: 150  %>
     </div>
   <% end %>
 </div>
-
-
-<%# d-flex flex-row justify-content-between align-items-center %>
-
-<%# h-25 d-flex flex-row justify-content-between align-items-center %>

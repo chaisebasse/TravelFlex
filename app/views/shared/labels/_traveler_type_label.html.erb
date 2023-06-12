@@ -1,15 +1,17 @@
-<div class="d-flex">
+<div class="d-flex align-items-center justify-content-between">
   <% if item == "solo" %>
     <div>
-      <%= image_tag "carousel/solo.png"%>
+      <%= image_tag "carousel/traveler/solo.png", width: 150 %>
     </div>
+
   <% elsif item == "couple" %>
     <div>
-      <%= image_tag "carousel/couple.png"%>
+      <%= image_tag "carousel/traveler/couple.png", width: 150  %>
     </div>
+
   <% else %>
     <div>
-      <%= image_tag "carousel/famille.png"%>
+      <%= image_tag "carousel/traveler/famille.png", width: 150  %>
     </div>
   <% end %>
 </div>

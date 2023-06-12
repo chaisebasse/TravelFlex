@@ -1,15 +1,17 @@
-<div class="d-flex">
+<div class="d-flex align-items-center justify-content-between">
   <% if item == "week-end" %>
     <div>
-      <%= image_tag "carousel/we.png"%>
+      <%= image_tag "carousel/duration/we.png", width: 150 %>
     </div>
+
   <% elsif item == "1 semaine" %>
     <div>
-      <%= image_tag "carousel/1sem.png"%>
+      <%= image_tag "carousel/duration/1sem.png", width: 150 %>
     </div>
+
   <% else %>
     <div>
-      <%= image_tag "carousel/2sem.png"%>
+      <%= image_tag "carousel/duration/2sem.png", width: 150 %>
     </div>
   <% end %>
 </div>
