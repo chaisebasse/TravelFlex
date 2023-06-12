@@ -10,13 +10,25 @@ class PagesController < ApplicationController
 
   def search_results
     session[:query] = params
-    client = OpenAI::Client.new
-    prompt_completion = "J'aimerais recevoir une chaîne JSON valide écrite en
-     français de 5 destinations depuis Paris
-    (hors France et royaume-uni) , budget #{params["travel"][:budget]} trajet inclus,
-     pour un voyage en #{params["travel"][:type_of_travelers]},
-    #{params["travel"][:type_of_destination]}, pour une durée de #{params["travel"][:duration]} jours / [{\"pays\":, \"region\":, \"lat\":, \"long\":},..]"
-    querryOpenAi(prompt_completion)
+    prompt_completion =
+    "I am giving you a length of stay, a season , a type of travel and an average budget.
+    Can you find me 5 destinations excluding France and Royaume-Uni,
+    present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes).
+    Each hash composing this array should be presented as followed :
+    {
+    pays:,
+    region:,
+    lat:,
+    long:}
+    Average Budget (including price for the travel): #{params["travel"][:budget]}
+    Type of travelers : #{params["travel"][:type_of_travelers]}
+    Type of destination : #{params["travel"][:type_of_destination]}
+    Length of stay :  #{params["travel"][:duration]}
+    Season: #{params["travel"][:saison]}
+    The destinations should be coherent in terms of distance regarding the duration of the stay.
+    Give you responses in French."
+
+    response = querryOpenAi(prompt_completion)
     begin
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
@@ -24,8 +36,8 @@ class PagesController < ApplicationController
       destinations_array = JSON.parse(destinations_cleaned2)
       final_array = scraping(destinations_array)
       redirect_to destinations_path(result:final_array)
-    rescue StandardError =>
-      querryOpenAi(prompt_completion)
+    rescue StandardError => e
+     response = querryOpenAi(prompt_completion)
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
@@ -39,6 +51,7 @@ class PagesController < ApplicationController
   end
 
   def querryOpenAi(prompt_completion)
+    client = OpenAI::Client.new
     response = client.completions(
       parameters: {
         model: "text-davinci-003",

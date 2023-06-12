@@ -28,7 +28,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <%= link_to "Choisir cette destination", details_path(destination: destination['pays']), class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
+                <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region']), class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
                 <%# <button type="button" class="btn btn-primary">Choisir cette destination</button> %>
               </div>
             </div>
