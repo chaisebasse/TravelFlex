@@ -17,13 +17,14 @@ class PagesController < ApplicationController
         prompt: "J'aimerais recevoir une chaîne JSON valide écrite en français de 5 destinations (hors France et royaume-uni) , budget #{params[:budget]} pour un voyage en #{params[:type_of_travelers]},
         #{params[:type_of_destination]}, pour une durée de #{params[:duration]} jours / [{\"pays\":, \"region\":, \"lat\":, \"long\":},..]",
         max_tokens: 400
-        })
+      }
+    )
     destinations = response['choices'][0]['text']
     destinations_cleaned = destinations.gsub(/^\s*- /, '')
     destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
     destinations_array = JSON.parse(destinations_cleaned2)
     final_array = scraping(destinations_array)
-    redirect_to destinations_path(result:final_array)
+    redirect_to destinations_path(result: final_array)
   end
 
   def destinations
