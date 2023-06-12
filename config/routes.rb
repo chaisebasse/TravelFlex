@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :travels do
     resources :step, only: [:index]
+    member do
+      get "pdf", to: "travels#pdf", as: :pdf
+    end
   end
   resources :activities, only: %i[update destroy]
   get "search", to: "pages#search"
   post "search", to: "pages#search_results"
   get "destinations", to: "pages#destinations"
-  get "dashboard", to: "pages#dashboard", as: :dashboard
-  get "dashboard/pdf", to: "pages#dashboard_pdf", as: :dashboard_pdf
+  get "dashboard", to: "pages#dashboard"
   get "details", to: "travels#details"
 end

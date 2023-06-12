@@ -12,6 +12,7 @@ class TravelsController < ApplicationController
   end
 
   def show
+    @travel = Travel.find(params[:id])
   end
 
   def create
@@ -55,7 +56,7 @@ class TravelsController < ApplicationController
     Length of stay :  #{session[:query]["travel"]["duration"]}
     Season: #{session[:query]["travel"]["season"]}
     The activities location should be coherent in terms of distance regarding the duration of the stay (limit the distances).Takes into account travel times and coherence to return to France on the last day. Give you responses in French."
-    raise
+
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
@@ -91,7 +92,17 @@ class TravelsController < ApplicationController
     #     lng: activity.long.to_f
     #   }
     # end
-    redirect_to dashboard_path
+    redirect_to travel_path(travel)
+  end
+
+  def pdf
+    @travel = Travel.find(params[:id])
+    respond_to do |format|
+      format.pdf do
+        pdf = render_to_string pdf: 'dashboard', template: 'pages/travel', encoding: 'UTF-8'
+        send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
+      end
+    end
   end
 
   private

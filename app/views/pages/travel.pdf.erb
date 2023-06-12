@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TravelFlex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <%= favicon_link_tag "favicon.png", rel: "icon", type: "image/png" %>
+  </head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1><%= @travel.destination %></h1>
+          <div>
+            <h2>Budget: <%= @travel.budget %></h2>
+            <h2>Durée: <%= @travel.duration %></h2>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <% @markers = @travel.activities.map do |activitie| %>
+        <%{ lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
+        <% end %>
+
+        <div style="width: 100%; height: 500px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
+      <% @travel.activities.each do |a| %>
+        <div class="card">
+          <div><h3><%= a.jour %></h3></div>
+          <div>Activité: <%= a.title %></div>
+          <div>Localisation: <%= a.localisation %></div>
+          <div>Moyen de transport: <%= a.moyen_de_transport %></div>
+          <div>Description: <%= a.description %></div>
+        </div>
+      <% end %>
+  </div>
+</body>
+</html>
