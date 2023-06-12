@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "search", to: "pages#search"
   post "search", to: "pages#search_results"
   get "destinations", to: "pages#destinations"
-  get "dashboard", to: "pages#dashboard"
+  get "dashboard", to: "pages#dashboard", as: :dashboard
+  get "dashboard/pdf", to: "pages#dashboard_pdf", as: :dashboard_pdf
   get "details", to: "travels#details"
 end

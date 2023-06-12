@@ -70,6 +70,16 @@ class PagesController < ApplicationController
     end
   end
 
+  def dashboard_pdf
+    @travels = current_user.travels
+
+    respond_to do |format|
+      format.pdf do
+        pdf = render_to_string pdf: 'dashboard', template: 'pages/dashboard', encoding: 'UTF-8'
+        send_data pdf, filename: 'dashboard.pdf', type: 'application/pdf', disposition: 'attachment'
+      end
+    end
+  end
   # def travel_params
   #   params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
   # end
