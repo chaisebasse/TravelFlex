@@ -19,6 +19,6 @@ class RoutardScraperCountry
 
     div = html_doc.search('.home-dest-desc p')
     filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
-    p_tag = filtered_paragraphes.first
+    p_tag = filtered_paragraphes.first.text
   end
 end

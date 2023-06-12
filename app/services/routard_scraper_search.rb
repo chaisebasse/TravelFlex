@@ -15,7 +15,6 @@ class RoutardScraperSearch
       search_results = client.get_hash
       result_url = search_results[:organic_results].first[:link]
       html_doc = Nokogiri::HTML(URI.open(result_url))
-
       main_div = html_doc.css(".community").first
       target_photo = main_div.css(".lazy").first
       img_src = target_photo['src']
@@ -26,7 +25,7 @@ class RoutardScraperSearch
       else
         p_tag = p_tag_select.map(&:text).find(&:present?)
       end
-    rescue => exception
+    rescue => e
       RoutardScraperCountry.new(@region, @country).call
     end
   end

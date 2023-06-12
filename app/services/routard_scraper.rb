@@ -13,14 +13,13 @@ class RoutardScraper
       url = "https://www.routard.com/guide/code_dest/#{@region}.htm"
       html_file = URI.open(url).read
       html_doc = Nokogiri::HTML.parse(html_file)
-      raise
       main_div = html_doc.css(".home-destination-media-img-wrapper").first
       target_photo = main_div.css(".lazy").first
       img_src = target_photo['src']
 
       div = html_doc.search('.home-dest-desc p')
       filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
-      p_tag = filtered_paragraphes.first
+      p_tag = filtered_paragraphes.first.text
     rescue
       RoutardScraperSearch.new(@region, @country).call
     end
