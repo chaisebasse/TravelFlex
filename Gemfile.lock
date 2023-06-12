@@ -126,6 +126,7 @@ GEM
     geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    google_search_results (2.2.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -263,6 +264,10 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.6.3)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.6)
+    wkhtmltopdf-heroku (2.12.6.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.8)
@@ -282,6 +287,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   geocoder
+  google_search_results (~> 2.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -298,6 +304,9 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  wicked_pdf
+  wkhtmltopdf-binary
+  wkhtmltopdf-heroku
 
 RUBY VERSION
    ruby 3.1.2p20

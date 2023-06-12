@@ -4,6 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 
+gem 'google_search_results', '~> 2.2'
+
 
 gem "ruby-openai"
 
@@ -35,6 +37,11 @@ gem "pundit"
 
 #GEOCODER
 gem "geocoder"
+
+#Génération de PDF
+gem 'wicked_pdf'
+gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-heroku", group: :production
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

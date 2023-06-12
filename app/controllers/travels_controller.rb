@@ -38,28 +38,62 @@ class TravelsController < ApplicationController
   end
 
   def details
+    destination_choice = params['destination']
+    destination_region =  params['region']
+    prompt_completion = "I am giving you a destination, a length of stay, a season.
+    Build me a coherent trip with 2 activities per day,takes into account the round trip to and from Paris as activity, but don't mention Paris coordonates, and present those result in JSON that can be parsed in ruby
+    (all the keys and values should be in double quotes).
+    Each hash composing this array should be presented as followed :
+    {
+    day: ,
+    activity: ,
+    description: ,
+    location: ,
+    latitude: ,
+    longitude: ,
+    transportation if needed:
+    }
+    Destination : #{destination_choice}
+    Region: #{destination_region}
+    Length of stay :  #{session[:query]["travel"]["duration"]}
+    Season: #{session[:query]["travel"]["season"]}
+    The locations should be coherent in terms of distance regarding the duration of the stay (limit the distances), take into account the travel beetwen each activity.
+    Give you responses in French."
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: 'Construis un JSON voyage au #{params[:destination_choice]} par jour avec un itinéraire cohérent (pense au retour) depuis la France, si besoin #{params[:permis de conduire]},
-          pour une durée de #{params[:duration]} jours en #{params[:saison]}, #{params[:nombre_activite]} activités par jour/
-          [{"jour": "Activité + description":, "localisation":, "lat": N/S, "long" W/E: "moyen de transport":}]',
-        max_tokens: 2000
+        prompt: prompt_completion,
+        max_tokens: 4000
       })
+
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
-    travel = Travel.create(destination: session[:query][:destination] ,travel_img_url: session[:query][:travel_img_url], theme: session[:query][:theme], title: "" , duration: session[:query][:duration] ,budget: session[:query][:duration],travelers:session[:query][:type_of_travelers])
+    travel = Travel.create(destination: destination_choice,
+      travel_img_url: session[:query]["travel"]["travel_img_url"],
+      theme: session[:query]["travel"]["theme"],
+      title: "" ,
+      duration: session[:query]["travel"]["duration"] ,
+      budget: session[:query]["travel"]["budget"],
+      travelers:session[:query]["travel"]["type_of_travelers"],
+      user: current_user)
+
     destinations_array.each do |day|
-      unless Step.find_by(travel: travel, num_step: day["jour"])
-        day_step = Step.new(num_step: day["jour"])
+      unless Step.find_by(travel: travel, num_step: day["day"])
+        day_step = Step.new(num_step: day["day"])
         day_step.travel = travel
         day_step.save
       end
-      activitie = Activity.new(title: day["Activité"], status: "Pending", long: day["lon"] , lat: day["lat"] , jour: day["jour"] ,localisation: day["localisation"], moyen_de_transport: day["moyen de transport"], description: day["Description"] )
+      activitie = Activity.new(title: day["activity"], status: "Pending", long: day["longitude"] , lat: day["latitude"] , jour: day["day"] ,localisation: day["location"], moyen_de_transport: day["transportation"], description: day["description"] )
       activitie.step = day_step
       activitie.save
     end
+    # @markers = travel.activities.map do |activity|
+    #   {
+    #     lat: activity.lat.to_f,
+    #     lng: activity.long.to_f
+    #   }
+    # end
     redirect_to dashboard_path
   end
 

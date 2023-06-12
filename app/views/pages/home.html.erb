@@ -7,10 +7,8 @@
         <div class="d-flex justify-content-center gap-3">
           <%= form_tag(search_path, method: "get") do %>
             <%= text_field_tag :destination, "", placeholder: "Ma destination" %>
-            <%= link_to "Go", search_path, class: "btn-home" %>
-            <%# <%= submit_tag "Go", class: "btn-home" %>
+            <%= submit_tag "Go", class: "btn-home" %>
           <% end %>
-
           <%= link_to "Inspirez-moi", search_path, class: "btn-home" %>
         </div>
       </div>

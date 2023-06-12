@@ -12,6 +12,7 @@ module TravelFlex
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
+      config.paths['app/views'] << Rails.root.join('app', 'views', 'pages')
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

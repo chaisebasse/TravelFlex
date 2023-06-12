@@ -1,4 +1,4 @@
 class Step < ApplicationRecord
   belongs_to :travel
-  has_many :activities
+  has_many :activities, dependent: :destroy
 end

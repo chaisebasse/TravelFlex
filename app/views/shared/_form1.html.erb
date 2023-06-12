@@ -1,0 +1,185 @@
+<div class="container">
+<<<<<<< HEAD:app/views/shared/_form.html.erb
+
+  <div id="carouselExampleIndicators" class="carousel slide wv-50 vh-50" data-bs-ride="carousel" data-bs-interval="3000000">
+    <%= simple_form_for travel, url: search_path, html: { class: 'my-form-class mt-5', data: { action: "submit->loader#loading" } } do |f| %>
+
+    <button class="carousel-control-prev carouselprevious" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon btn-card-destination" aria-hidden="true"></span>
+=======
+  <%= form_with model: travel, url: search_path, html: { data: { action: "submit->loader#loading" } }, class: 'my-form-class mt-5' do |f| %>
+    <div class="carousel slide" id="carouselExampleIndicators">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
+                <%= f.radio_button :budget, '500€', id: 'budget-low' %>
+                <%= f.label :budget_low, "500€" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
+                <%= f.radio_button :budget, '1000€', id: 'budget-medium' %>
+                <%= f.label :budget_medium, "1000€" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
+                <%= f.radio_button :budget, '+1500€', id: '+1500€' %>
+                <%= f.label :budget_high, "+ de 1500€" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="carousel-item">
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_travelers, 'Voyageur seul', id: 'travelers-solo' %>
+                <%= f.label :travelers_solo, "Voyageurs seul" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_travelers, 'Voyage en couple', id: 'travelers-couple' %>
+                <%= f.label :travelers_couple, "Couple" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_travelers, 'Voyage en famille', id: 'travelers-family' %>
+                <%= f.label :travelers_family, "Famille" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_destination, 'Near the beach', id: 'destination-beach' %>
+                <%= f.label :destination_beach, "Plage" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_destination, 'En ville', id: 'destination-city' %>
+                <%= f.label :destination_city, "Ville" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :type_of_destination, 'Mountain trip', id: 'destination-mountain' %>
+                <%= f.label :destination_mountain, "Montagne" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :duration, '2 jours', id: 'duration-short' %>
+                <%= f.label :duration_short, "Week-end" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :duration, 'Une semaine', id: 'duration-medium' %>
+                <%= f.label :duration_medium, "Une semaine" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :duration, '2 semaines', id: 'duration-long' %>
+                <%= f.label :duration_long, "2 semaines" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-group flex-column">
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'Au Printemps', id: 'season-spring' %>
+                <%= f.label :season_spring, "Printemps" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'En été', id: 'season-summer' %>
+                <%= f.label :season_summer, "Été" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'En automne', id: 'season-autumn' %>
+                <%= f.label :season_autumn, "Automne" %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <%= f.radio_button :season, 'en Hiver', id: 'season-winter' %>
+                <%= f.label :season_winter, "Hiver" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+>>>>>>> 46823b15916665b68dbc33105b1e97d4817fbdd1:app/views/shared/_form1.html.erb
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next carouselnext" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon btn-card-destination" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+      <div class="carousel-indicators carouselstep">
+        <button type="button " data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <%= f.input :budget, as: :radio_buttons, legend: false, collection: ['< 500 €', 'de 500 € à 1 000 €', '> 1 000 €'], label_method: lambda { |item| render "shared/labels/budget_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        </div>
+
+        <div class="carousel-item">
+          <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        </div>
+
+        <div class="carousel-item">
+          <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        </div>
+
+        <div class="carousel-item">
+          <%= f.input :type, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        </div>
+
+        <div class="carousel-item">
+          <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-4">
+        <%= f.submit "Voyager !", class: 'btn btn-home' %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
