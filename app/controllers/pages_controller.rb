@@ -11,8 +11,7 @@ class PagesController < ApplicationController
   def search_results
     session[:query] = params
     prompt_completion =
-
-    "I am giving you a length of stay, a season , a type of travel and an average budget.
+      "I am giving you a length of stay, a season , a type of travel and an average budget.
     Can you find me 5 destinations excluding France and Royaume-Uni,
     present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes).
     Each hash composing this array should be presented as followed :
@@ -40,7 +39,7 @@ class PagesController < ApplicationController
       final_array = scraping(destinations_array)
 
 
-      redirect_to destinations_path(result:final_array)
+      redirect_to destinations_path(result: final_array)
     rescue StandardError => e
      response = querryOpenAi(prompt_completion)
       destinations = response['choices'][0]['text']
@@ -64,7 +63,7 @@ class PagesController < ApplicationController
         prompt: prompt_completion,
         max_tokens: 400
         })
-        return response
+    return response
   end
 
 
@@ -112,10 +111,28 @@ class PagesController < ApplicationController
     end
   end
 
+  def dashboard_pdf
+    @travels = current_user.travels
 
+    respond_to do |format|
+      format.pdf do
+        pdf = render_to_string pdf: 'dashboard', template: 'pages/dashboard', encoding: 'UTF-8'
+        send_data pdf, filename: 'dashboard.pdf', type: 'application/pdf', disposition: 'attachment'
+      end
+    end
+  end
+  # def travel_params
+  #   params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
+  # end
+
+  # def create_form_one
+  #   @travel = Travel.new(travel_params)
+  #   @travel.user = current_user
+  #   @travel.save
+  #   redirect_to destinations_path
+  # end
+  
   def search
     @travel = Travel.new
   end
-
-
 end
