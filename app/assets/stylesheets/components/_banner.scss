@@ -4,6 +4,10 @@
   padding: 200px 0;
 }
 
+.banner-padding  {
+  padding:  0px !important;
+}
+
 .banner h1 {
   color: white;
 }
@@ -12,4 +16,8 @@
   color: white;
   opacity: .7;
   font-size: 20px;
+}
+
+.bck-img {
+  background-image: url('search_background.jpg'), linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }

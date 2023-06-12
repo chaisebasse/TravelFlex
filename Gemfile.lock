@@ -126,6 +126,7 @@ GEM
     geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    google_search_results (2.2.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -286,6 +287,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   geocoder
+  google_search_results (~> 2.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)

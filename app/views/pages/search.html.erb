@@ -1,9 +1,61 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(<%= asset_path('search_background.jpg')%>);">
 <div data-controller="loader">
+<div data-loader-target="loader2" class="banner bck-img">
   <%= render "shared/form1", travel: @travel %>
-  <div class="d-none" data-loader-target="loader" >
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-      <%= image_tag "SnoopDogg.gif", class: "h-75"%>
+
+    <div class="d-none" data-loader-target="loader" >
+    
+   <div class="page-wrap" data-controller="burger">
+    <main>
+      <nav>
+      <h1>TravelFlex | Nous choisissons les destinations les plus pertinentes en prenant en compte vos critères</h1>
+    </nav>
+      <article id="hero-1" style="--i: 5">
+        <div class="hero-info">
+          <h2 data-target="burger.heroText">Travel the</h2>
+          <h1 data-target="burger.heroText">World</h1>
+          <h3 data-target="burger.heroText">Pragser Wildsee, Italy</h3>
+        </div>
+        <div class="hero-image hi-1"></div>
+      </article>
+
+      <article id="hero-2" style="--i: 4">
+        <div class="hero-info">
+          <h2 data-target="burger.heroText">Savour the</h2>
+          <h1 data-target="burger.heroText">Journey</h1>
+          <h3 data-target="burger.heroText">Marignier, France</h3>
+        </div>
+        <div class="hero-image hi-2"></div>
+      </article>
+
+      <article id="hero-3" style="--i: 3">
+        <div class="hero-info">
+          <h2 data-target="burger.heroText">Expand Your</h2>
+          <h1 data-target="burger.heroText">Horizons</h1>
+          <h3 data-target="burger.heroText">Hooker Valley Track, New Zealand</h3>
+        </div>
+        <div class="hero-image hi-3"></div>
+      </article>
+
+      <article id="hero-4" style="--i: 2">
+        <div class="hero-info">
+          <h2 data-target="burger.heroText">Explore and</h2>
+          <h1 data-target="burger.heroText">Reflect</h1>
+          <h3 data-target="burger.heroText">Dolmites, Italy</h3>
+        </div>
+        <div class="hero-image hi-4"></div>
+      </article>
+
+      <article id="hero-5" style="--i: 1">
+        <div class="hero-info">
+          <h2 data-target="burger.heroText">Change Your</h2>
+          <h1 data-target="burger.heroText">Perspective</h1>
+          <h3 data-target="burger.heroText">Phuket, Thailand</h3>
+        </div>
+        <div class="hero-image hi-5"></div>
+      </article>
+    </main>
+
+  </header>
     </div>
   </div>
 </div>

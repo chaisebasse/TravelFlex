@@ -3,27 +3,33 @@
     <div class="carousel slide" id="carouselExampleIndicators">
       <div class="carousel-inner">
         <div class="carousel-item active">
+
           <div class="card-group flex-column">
             <div class="card">
-              <div class="card-body d-flex align-items-center justify-content-center">
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
                 <%= f.radio_button :budget, '500€', id: 'budget-low' %>
                 <%= f.label :budget_low, "500€" %>
               </div>
             </div>
             <div class="card">
-              <div class="card-body d-flex align-items-center justify-content-center">
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
                 <%= f.radio_button :budget, '1000€', id: 'budget-medium' %>
                 <%= f.label :budget_medium, "1000€" %>
               </div>
             </div>
             <div class="card">
-              <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :budget, 'high', id: '+1500€' %>
+              <div class="card-body d-flex align-items-center justify-content-center m-3">
+                <%= f.radio_button :budget, '+1500€', id: '+1500€' %>
                 <%= f.label :budget_high, "+ de 1500€" %>
               </div>
             </div>
           </div>
         </div>
+
+
+
+
+
         <div class="carousel-item">
           <div class="card-group flex-column">
             <div class="card">
@@ -34,13 +40,13 @@
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_travelers, 'couple', id: 'travelers-couple' %>
+                <%= f.radio_button :type_of_travelers, 'Voyage en couple', id: 'travelers-couple' %>
                 <%= f.label :travelers_couple, "Couple" %>
               </div>
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_travelers, 'family', id: 'travelers-family' %>
+                <%= f.radio_button :type_of_travelers, 'Voyage en famille', id: 'travelers-family' %>
                 <%= f.label :travelers_family, "Famille" %>
               </div>
             </div>
@@ -50,7 +56,7 @@
           <div class="card-group flex-column">
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_destination, 'Au bord de la mer', id: 'destination-beach' %>
+                <%= f.radio_button :type_of_destination, 'Near the beach', id: 'destination-beach' %>
                 <%= f.label :destination_beach, "Plage" %>
               </div>
             </div>
@@ -62,7 +68,7 @@
             </div>
             <div class="card">
               <div class="card-body d-flex align-items-center justify-content-center">
-                <%= f.radio_button :type_of_destination, 'a la montagne', id: 'destination-mountain' %>
+                <%= f.radio_button :type_of_destination, 'Mountain trip', id: 'destination-mountain' %>
                 <%= f.label :destination_mountain, "Montagne" %>
               </div>
             </div>
