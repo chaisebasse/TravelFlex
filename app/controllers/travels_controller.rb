@@ -39,23 +39,24 @@ class TravelsController < ApplicationController
 
   def details
     destination_choice = params['destination']
+    prompt_completion = "I am giving you a destination, a length of stay, a season. Can you find me two activities per day for this travel and present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes). Each hash composing this array should be presented as followed :
+    {
+    day: ,
+    activity: ,
+    description: ,
+    location: ,
+    latitude: ,
+    longitude: ,
+    transportation :
+    }
+    Destination : #{destination_choice}
+    Length of stay :  #{session[:query]["travel"]["duration"]}
+    Season: #{session[:query]["travel"]["season"]}"
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
-        prompt: "I am giving you a destination, a length of stay, a season. Can you find me two activities per day for this travel and present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes). Each hash composing this array should be presented as followed :
-        {
-        day: ,
-        activity: ,
-        description: ,
-        location: ,
-        latitude: ,
-        longitude: ,
-        transportation :
-        }
-        Destination : #{destination_choice}
-        Length of stay :  #{session[:query]["travel"]["duration"]}
-        Season: #{session[:query]["travel"]["season"]}",
+        prompt: prompt_completion,
         max_tokens: 2000
       })
 
