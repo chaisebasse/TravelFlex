@@ -13,11 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   </head>
 
-  <body><%= render "shared/navbar"%>
-<%= render "shared/flashes" %>
-  <div class="wrapper">
+  <body data-controller="navbar">
+    <%= render "shared/navbar"%>
+    <%= render "shared/flashes" %>
+    <div class="wrapper">
       <%= yield %>
-  </div>
+    </div>
     <%= render "shared/footer" %>
   </body>
 </html>

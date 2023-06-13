@@ -1,11 +1,10 @@
 <div class="container">
 
-  <div id="carouselExampleIndicators" class="carousel slide wv-50 vh-50" data-bs-ride="carousel"    data-bs-interval="3000000">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000000">
     <%= simple_form_for travel, url: search_path, html: { class: 'my-form-class mt-5', data: { action: "submit->loader#loading" } } do |f| %>
 
-    <button class="carousel-control-prev carouselprevious" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <button class="carousel-control-prev carouselprevious" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon btn-card-destination" aria-hidden="true"></span>
-
         <span class="visually-hidden">Previous</span>
       </button>
 
@@ -23,33 +22,56 @@
       </div>
 
       <div class="carousel-inner">
-
-        <div class="carousel-item active">
-          <%= f.input :budget, as: :radio_buttons, legend: false, collection: ['< 500 €', 'de 500 € à 1 000 €', '> 1 000 €'], label_method: lambda { |item| render "shared/labels/budget_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        <div class="carousel-item bg-white p-3 active">
+          <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
+            <div class="questionform p-3 w-100">
+              <h3>Choisissez votre budget :</h3>
+            </div>
+            <%= f.input :budget, as: :radio_buttons, legend: false, collection: ['< 500 €', 'de 500 € à 1 000 €', '> 1 000 €'], label_method: lambda { |item| render "shared/labels/budget_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          </div>
         </div>
-
-        <div class="carousel-item">
-          <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        <div class="carousel-item bg-white p-3 rounded">
+          <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
+            <div class="questionform p-3 w-100">
+              <h3>Choisissez votre duration :</h3>
+            </div>
+            <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          </div>
         </div>
-
-        <div class="carousel-item">
-          <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        <div class="carousel-item bg-white p-3 rounded">
+          <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
+            <div class="questionform p-3 w-100">
+              <h3>Choisissez votre travelers :</h3>
+            </div>
+            <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          </div>
         </div>
-
-        <div class="carousel-item">
-          <%= f.input :type, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        <div class="carousel-item bg-white p-3 rounded">
+          <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
+            <div class="questionform p-3 w-100" >
+              <h3>Choisissez votre type :</h3>
+            </div>
+            <%= f.input :type, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+          </div>
         </div>
-
-        <div class="carousel-item">
-          <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+        <div class="carousel-item bg-white p-3 rounded position-relative">
+          <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
+            <div class="questionform p-3 w-100" >
+              <h3>Choisissez votre season :</h3>
+            </div>
+            <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
+            <div class="text-center mt-4 w-100 position-absolute" style="bottom: 20px;">
+              <%= f.submit "Voyager !", class: 'btn btn-home' %>
+            </div>
+          </div>
         </div>
-
       </div>
-
-      <div class="text-center mt-4">
-        <%= f.submit "Voyager !", class: 'btn btn-home' %>
-      </div>
-
     <% end %>
   </div>
 </div>
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#ff5500" fill-opacity="1" d="M0,32L60,53.3C120,75,240,117,360,144C480,171,600,181,720,181.3C840,181,960,171,1080,144C1200,117,1320,75,1380,53.3L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+</svg>
