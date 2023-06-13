@@ -121,7 +121,6 @@ class TravelsController < ApplicationController
 
     mapbox_api_key = ENV['MAPBOX_API_KEY']
     size = "500x300"
-    retina = "true"
     geojson = { type: "MultiPoint", coordinates: markers }.to_json
     points = CGI.escape(geojson)
     map_image_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/geojson(#{points})/auto/#{size}?access_token=#{mapbox_api_key}"
