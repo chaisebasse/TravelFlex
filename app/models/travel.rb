@@ -7,4 +7,8 @@ class Travel < ApplicationRecord
 
   attr_accessor :season
   attr_accessor :type
+
+  def step_coordinates
+    self.steps.flat_map(&:activities).map { |activity| [activity.long, activity.lat] }
+  end
 end

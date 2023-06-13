@@ -27,13 +27,14 @@
   </div>
   <div class="col-md-6" id="surroundMap">
       <% @markers = @travel.activities.map do |activitie| %>
-      <%{ lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
+      <% { lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
       <% end %>
       <div style="width: 100%; height: 500px;"
       data-controller="map"
       id="map"
       data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-map-coordinates-value="<%= @travel.step_coordinates %>">
       </div>
   </div>
 </div>
