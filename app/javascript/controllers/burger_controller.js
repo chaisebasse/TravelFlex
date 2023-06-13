@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["heroImage", "heroText"];
 
   connect() {
-    console.log("SOS")
     this.showMenu = false;
     this.del = 3;
     this.i = 1;
