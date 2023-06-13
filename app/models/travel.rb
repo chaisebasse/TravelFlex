@@ -5,9 +5,6 @@ class Travel < ApplicationRecord
 
   validates :budget, presence: true
 
-<<<<<<< HEAD
   attr_accessor :season
   attr_accessor :type
-=======
->>>>>>> 46823b15916665b68dbc33105b1e97d4817fbdd1
 end
