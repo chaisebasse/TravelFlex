@@ -13,7 +13,10 @@ class RoutardScraperSearch
     begin
       client = GoogleSearch.new(q: "site:routard.com #{@region}")
       search_results = client.get_hash
-      result_url = search_results[:organic_results].first[:link]
+      title_regex = /\AVisiter \D+\ (\D+), Voyage \D+/
+      result = search_results[:organic_results].find { |r| r[:title].match(title_regex) }
+      result_url = result[:link] if result
+
       html_doc = Nokogiri::HTML(URI.open(result_url))
       main_div = html_doc.css(".community").first
       target_photo = main_div.css(".lazy").first
