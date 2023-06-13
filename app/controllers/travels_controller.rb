@@ -20,6 +20,18 @@ class TravelsController < ApplicationController
     @travel.user = current_user
   end
 
+
+  # def create
+  #   @travel = Travel.new(travel_params)
+  #   @travel.user = current_user
+  #   if @travel.save
+  #     generate_map_image(@travel)
+  #     redirect_to travel_path(@travel)
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def edit
     redirect_to travel_path(@travel)
   end
@@ -74,13 +86,13 @@ class TravelsController < ApplicationController
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
     travel = Travel.create(destination: destination_choice,
-      travel_img_url: session[:query]["travel"]["travel_img_url"],
-      theme: session[:query]["travel"]["theme"],
-      title: "" ,
-      duration: session[:query]["travel"]["duration"] ,
-      budget: session[:query]["travel"]["budget"],
-      travelers:session[:query]["travel"]["type_of_travelers"],
-      user: current_user)
+    travel_img_url: session[:query]["travel"]["travel_img_url"],
+    theme: session[:query]["travel"]["theme"],
+    title: "" ,
+    duration: session[:query]["travel"]["duration"] ,
+    budget: session[:query]["travel"]["budget"],
+    travelers:session[:query]["travel"]["type_of_travelers"],
+    user: current_user)
 
     destinations_array.each do |day|
       unless Step.find_by(travel: travel, num_step: day["day"])
@@ -98,11 +110,36 @@ class TravelsController < ApplicationController
     #     lng: activity.long.to_f
     #   }
     # end
+    generate_map_image(travel)
     redirect_to travel_path(travel)
   end
 
+  def generate_map_image(travel)
+    markers = travel.activities.map do |activity|
+      { lat: activity.lat.to_f, lng: activity.long.to_f }
+    end
+
+    mapbox_api_key = ENV['MAPBOX_API_KEY']
+    size = "800x600"
+    retina = "true"
+    map_image_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/#{markers_to_string(markers)}/#{size}/#{retina}?access_token=#{mapbox_api_key}"
+
+    travel.update(travel_img_url: map_image_url)
+  end
+
+  def markers_to_string(markers)
+    markers.map { |marker| "#{marker[:lng]},#{marker[:lat]}" }.join(",")
+  end
+
+
+def markers_to_string(markers)
+  markers.map { |marker| "#{marker[:lng]},#{marker[:lat]}" }.join(",")
+end
+
+
   def pdf
     @travel = Travel.find(params[:id])
+    generate_map_image(@travel)
     respond_to do |format|
       format.pdf do
         pdf = render_to_string pdf: 'dashboard', template: 'pages/travel', encoding: 'UTF-8'

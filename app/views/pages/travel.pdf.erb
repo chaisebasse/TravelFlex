@@ -22,15 +22,7 @@
           </div>
       </div>
       <div class="col-md-6">
-        <% @markers = @travel.activities.map do |activitie| %>
-        <%{ lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
-        <% end %>
-
-        <div style="width: 100%; height: 500px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
+        <img src="<%= @travel.travel_img_url %>" alt="Carte du voyage">
       </div>
     </div>
       <% @travel.activities.each do |a| %>
