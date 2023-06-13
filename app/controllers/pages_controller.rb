@@ -67,7 +67,7 @@ class PagesController < ApplicationController
     )
     return response
   end
-  
+
   def scraping(destinations)
     response = []
     destinations.each do |destination|
@@ -78,13 +78,11 @@ class PagesController < ApplicationController
       country.strip!
       country = country.gsub!(/-/, '_') if country.include?("-")
 
-      RoutardScraper.new(region, country)
+      scraper = RoutardScraper.new(region, country).call
 
-      text_before_br = p_tag.children.select { |node| node.name == 'text' }.first
-      @text_content = text_before_br.text.strip
+      destination["img_src"] = scraper[0]
+      destination["text_content"] = scraper[1]
 
-      destination["img_src"] = img_src
-      destination["text_content"] = @text_content
       response << destination
     end
 

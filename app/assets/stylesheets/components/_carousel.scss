@@ -9,14 +9,8 @@
   }
 }
 
-.carouselnext {
-  right: -120px;
-  bottom: 49px;
-}
-
-.carouselprevious {
-  left: -120px;
-  bottom: 49px;
+.carousel-inner .form-check {
+  padding: 0px 10px;
 }
 
 .carouselstep {
@@ -30,9 +24,18 @@
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: #CC4D23;
+  background-color: #F68712;
 
   &:hover {
     background-color: #2984DA;
   }
+}
+
+.questionform {
+  color: $blue-flex;
+  text-align: center;
+}
+
+.carousel-item {
+  height: 70vh;
 }

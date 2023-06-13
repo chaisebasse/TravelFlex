@@ -2,7 +2,7 @@ require "open-uri"
 require "nokogiri"
 require 'google_search_results'
 
-class RoutardScraperSearch
+class RoutardScraperExtra
   def initialize(region, country)
     @region = region
     @country = country
@@ -13,24 +13,24 @@ class RoutardScraperSearch
     begin
       client = GoogleSearch.new(q: "site:routard.com #{@region}")
       search_results = client.get_hash
-      title_regex = /\AVisiter \D+\ (\D+), Voyage \D+/
-      result = search_results[:organic_results].find { |r| r[:title].match(title_regex) }
+      title_regex = %r{https://www.routard.com/\D*voyage\D*/.*.htm[l]?}
+      result = search_results[:organic_results].find { |r| r[:link].match(title_regex) }
       result_url = result[:link] if result
 
       html_doc = Nokogiri::HTML(URI.open(result_url))
-      main_div = html_doc.css(".community").first
+      main_div = html_doc.css(".article-mag.reportage").first
       target_photo = main_div.css(".lazy").first
       img_src = target_photo['src']
 
       p_tag_select = main_div.search('p')
-      if p_tag_select.at_css('.lieu-intro').text.present?
-        p_tag = p_tag_select.at_css('.lieu-intro')
+      if p_tag_select.at_css('.mag-content').text.present?
+        p_tag = p_tag_select.at_css('.mag-content')
       else
         p_tag = p_tag_select.map(&:text).find(&:present?)
       end
       return [img_src, p_tag]
     rescue => e
-      RoutardScraperExtra.new(@region, @country).call
+      RoutardScraperCountry.new(@region, @country).call
     end
   end
 end
