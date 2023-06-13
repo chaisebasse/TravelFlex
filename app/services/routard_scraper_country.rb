@@ -19,8 +19,8 @@ class RoutardScraperCountry
 
     div = html_doc.search('.home-dest-desc p')
     filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
-    text_before_first_br = filtered_paragraphes.first.children
+    text_before_first_br = filtered_paragraphes.first.text
     p_tag = text_before_first_br
-    return [img_src, p_tag]
+    return [img_src, p_tag.scan(/[^.]*[.]/)]
   end
 end

@@ -98,7 +98,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   def search
     @travel = Travel.new
   end
