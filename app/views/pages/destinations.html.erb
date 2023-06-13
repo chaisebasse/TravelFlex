@@ -1,17 +1,22 @@
-<div class="container mt-3">
+<div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
-    <div class="cards">
-      <% params[:result].each_with_index do |destination, index| %>
-        <div class="card m-2 card-id">
-          <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title"><p><%= destination["pays"] %></p></h5>
-            <p class="card-text"><p><%= destination["region"] %></p></p>
+    <% params[:result].each_with_index do |destination, index| %>
+      <div class="cardContainer col-5">
+        <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">
+          <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
+            <div class="cardBis" data-card-target="card">
+             <div class="cardBg" style="background-image: url(<%= destination["img_src"] %>);" data-card-target="cardBg"></div>
+               <div class="cardInfo">
+                <h3 class="cardTitle">
+                  <%= destination["pays"] %>
+                  </h3>
+                  <p><%= destination["region"] %></p>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">En savoir plus</button>
-        </div>
-
-       <div class="modal" id="myModal<%= index %>" tabindex="-1">
+</div>
+      </button>
+        <div class="modal" id="myModal<%= index %>" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -19,21 +24,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-              <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
-             <p class="p-2"> <%= destination["text_content"] %></p>
-              <div style="width: 100%; height: 200px;"
-              data-controller="map"
-              data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
-              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+                <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
+                  <p class="p-2"> <%= destination["text_content"] %></p>
+                <div style="width: 100%; height: 200px;"
+                  data-controller="map"
+                  data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
+                  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region']), class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
+
+<% end %>
+</div>
+
 </div>
