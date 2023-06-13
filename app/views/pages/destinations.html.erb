@@ -27,14 +27,8 @@
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
               </div>
               <div class="modal-footer">
-<<<<<<< HEAD
-                <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
-                <button type="button" class="btn btn-primary">Choisir cette destination</button>
-=======
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region']), class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
-                <%# <button type="button" class="btn btn-primary">Choisir cette destination</button> %>
->>>>>>> 46823b15916665b68dbc33105b1e97d4817fbdd1
               </div>
             </div>
           </div>
