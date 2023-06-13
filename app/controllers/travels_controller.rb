@@ -51,7 +51,7 @@ class TravelsController < ApplicationController
   end
 
   def details
-    destination_choice = params['pays']
+    destination_choice = params['destination']
     destination_region = params['region']
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip to and from Paris as activity, but don't mention Paris coordonates, and present those result in JSON that can be parsed in ruby
