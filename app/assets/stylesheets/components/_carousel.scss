@@ -18,7 +18,7 @@
 }
 
 .category-selector:checked + label {
-  border: solid 3px #2984DA !important;
+  border: solid 3px #0AAFE6 !important;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
@@ -27,15 +27,20 @@
   background-color: #F68712;
 
   &:hover {
-    background-color: #2984DA;
+    background-color: #0AAFE6;
   }
 }
 
 .questionform {
-  color: $blue-flex;
+  color: #0AAFE6;
   text-align: center;
 }
 
 .carousel-item {
   height: 70vh;
+}
+
+h3 {
+  font-style: italic;
+  font-weight: bold;
 }

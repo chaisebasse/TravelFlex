@@ -5,9 +5,9 @@ export default class extends Controller {
 
   connect() {
     window.addEventListener("scroll", function(e) {
-      if (window.scrollY >= 70) {
+      if (window.scrollY >= 10) {
         document.querySelector('.navbar').style.backgroundColor = "white";
-      } else if (window.scrollY < 70){
+      } else if (window.scrollY < 10){
         document.querySelector('.navbar').style.backgroundColor = "transparent";
       }
     });

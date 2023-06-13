@@ -68,6 +68,11 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
 }
 
+.homecard {
+  background-color: white;
+  border-radius: 8px;
+}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
