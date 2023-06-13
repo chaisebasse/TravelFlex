@@ -1,6 +1,8 @@
 <div class="container">
   <div class="justify-content-center align-items-center mt-3">
+
     <h1 class="text-center p-3"><strong>Votre carnet de voyage</strong></h1>
+
       <div class="row rowalign-item-center justify-content-center">
         <% Travel.where(user: current_user).each do |t| %>
         <div class="col">
