@@ -13,6 +13,7 @@ class PagesController < ApplicationController
     session[:query] = params
     prompt_completion =
       "I am giving you a length of stay, a season , a type of travel and an average budget.
+
     Can you find me 5 destinations excluding France and Royaume-Uni,
     present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes).
     Each hash composing this array should be presented as followed :
@@ -38,6 +39,7 @@ class PagesController < ApplicationController
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
       final_array = scraping(destinations_array)
+
 
       redirect_to destinations_path(result: final_array)
     rescue StandardError => e
@@ -65,7 +67,7 @@ class PagesController < ApplicationController
     )
     return response
   end
-
+  
   def scraping(destinations)
     response = []
     destinations.each do |destination|
@@ -97,6 +99,7 @@ class PagesController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+
 
   def search
     @travel = Travel.new

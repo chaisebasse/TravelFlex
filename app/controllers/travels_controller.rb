@@ -12,6 +12,7 @@ class TravelsController < ApplicationController
   end
 
   def show
+    @travel = Travel.find(params[:id])
   end
 
   def create
@@ -40,7 +41,10 @@ class TravelsController < ApplicationController
   def details
     destination_choice = params['destination']
     destination_region =  params['region']
-    prompt_completion = "I am giving you a destination, a length of stay, a season. Can you find me two activities per day for this travel and present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes). Each hash composing this array should be presented as followed :
+    prompt_completion = "I am giving you a destination, a length of stay, a season.
+    Build me a coherent trip with 2 activities per day,takes into account the round trip to and from Paris as activity, but don't mention Paris coordonates, and present those result in JSON that can be parsed in ruby
+    (all the keys and values should be in double quotes).
+    Each hash composing this array should be presented as followed :
     {
     day: ,
     activity: ,
@@ -54,14 +58,16 @@ class TravelsController < ApplicationController
     Region: #{destination_region}
     Length of stay :  #{session[:query]["travel"]["duration"]}
     Season: #{session[:query]["travel"]["season"]}
-    The activities location should be coherent in terms of distance regarding the duration of the stay (limit the distances).Takes into account travel times and coherence to return to France on the last day. Give you responses in French."
-    raise
+
+    The locations should be coherent in terms of distance regarding the duration of the stay (limit the distances), take into account the travel beetwen each activity.
+    Give you responses in French."
+
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
         model: "text-davinci-003",
         prompt: prompt_completion,
-        max_tokens: 2000
+        max_tokens: 4000
       })
 
     destinations = response['choices'][0]['text']
@@ -91,7 +97,17 @@ class TravelsController < ApplicationController
     #     lng: activity.long.to_f
     #   }
     # end
-    redirect_to dashboard_path
+    redirect_to travel_path(travel)
+  end
+
+  def pdf
+    @travel = Travel.find(params[:id])
+    respond_to do |format|
+      format.pdf do
+        pdf = render_to_string pdf: 'dashboard', template: 'pages/travel', encoding: 'UTF-8'
+        send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
+      end
+    end
   end
 
   private

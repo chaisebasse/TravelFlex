@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :travels do
     resources :step, only: [:index]
+    member do
+      get "pdf", to: "travels#pdf", as: :pdf
+    end
   end
   resources :activities, only: %i[update destroy]
   get "search", to: "pages#search"

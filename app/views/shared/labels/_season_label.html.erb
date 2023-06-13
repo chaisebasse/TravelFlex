@@ -1,0 +1,22 @@
+<div class="d-flex align-items-center justify-content-between">
+  <% if item == "automn" %>
+     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/season/automn.png"%>)">
+      Automne
+    </div>
+
+  <% elsif item == "winter" %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/season/winter.png"%>)">
+      Hiver
+    </div>
+
+  <% elsif item == "spring" %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/season/spring.png"%>)">
+      Printemps
+    </div>
+
+  <% else %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/season/summer.png"%>)">
+      Eté
+    </div>
+  <% end %>
+</div>
