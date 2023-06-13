@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
     <% params[:result].each_with_index do |destination, index| %>
-      <div class="cardContainer col-5">
+      <div class="cardContainer col-4">
         <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">
           <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
             <div class="cardBis" data-card-target="card">

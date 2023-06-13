@@ -40,9 +40,9 @@ class TravelsController < ApplicationController
 
   def details
     destination_choice = params['destination']
-    destination_region =  params['region']
+    destination_region = params['region']
     prompt_completion = "I am giving you a destination, a length of stay, a season.
-    Build me a coherent trip with 2 activities per day,takes into account the round trip to and from Paris as activity, but don't mention Paris coordonates, and present those result in JSON that can be parsed in ruby
+    Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
     Each hash composing this array should be presented as followed :
     {
@@ -59,7 +59,8 @@ class TravelsController < ApplicationController
     Length of stay :  #{session[:query]["travel"]["duration"]}
     Season: #{session[:query]["travel"]["season"]}
 
-    The locations should be coherent in terms of distance regarding the duration of the stay (limit the distances), take into account the travel beetwen each activity.
+    The locations should be coherent in terms of distance regarding the duration of the stay (limit the distances),
+     take into account the travels beetwen activities.
     Give you responses in French."
 
     client = OpenAI::Client.new
@@ -67,7 +68,7 @@ class TravelsController < ApplicationController
       parameters: {
         model: "text-davinci-003",
         prompt: prompt_completion,
-        max_tokens: 4000
+        max_tokens: 3800
       })
 
     destinations = response['choices'][0]['text']
