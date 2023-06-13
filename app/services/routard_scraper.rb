@@ -22,7 +22,7 @@ class RoutardScraper
       filtered_paragraphes = div.reject { |par| !par.at('strong').nil? }
       text_before_first_br = filtered_paragraphes.first.text
       p_tag = text_before_first_br
-      return [img_src, p_tag.scan(/[^.]*[.]/)]
+      return [img_src, p_tag.scan(/[^.]*?(?:\.+|\u2026)(?![.])/)]
     rescue
       RoutardScraperSearch.new(@region, @country).call
     end

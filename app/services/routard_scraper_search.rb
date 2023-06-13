@@ -23,13 +23,13 @@ class RoutardScraperSearch
       img_src = target_photo['src']
 
       p_tag_select = main_div.search('p')
-      
+
       if p_tag_select.at_css('.lieu-intro').text.present?
         p_tag = p_tag_select.at_css('.lieu-intro').text.strip
       else
         p_tag = p_tag_select.map(&:text).find(&:present?).strip
       end
-      return [img_src, p_tag.scan(/[^.]*[.]/)]
+      return [img_src, p_tag.scan(/[^.]*?(?:\.+|\u2026)(?![.])/)]
     rescue => e
       RoutardScraperExtra.new(@region, @country).call
     end

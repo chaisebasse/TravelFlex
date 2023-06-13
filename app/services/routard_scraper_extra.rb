@@ -28,7 +28,7 @@ class RoutardScraperExtra
       else
         p_tag = p_tag_select.map(&:text).find(&:present?)
       end
-      return [img_src, p_tag.scan(/[^.]*[.]/)]
+      return [img_src, p_tag.scan(/[^.]*?(?:\.+|\u2026)(?![.])/)]
     rescue => e
       RoutardScraperCountry.new(@region, @country).call
     end
