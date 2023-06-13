@@ -116,26 +116,18 @@ class TravelsController < ApplicationController
 
   def generate_map_image(travel)
     markers = travel.activities.map do |activity|
-      { lat: activity.lat.to_f, lng: activity.long.to_f }
+      [activity.long.to_f, activity.lat.to_f]
     end
 
     mapbox_api_key = ENV['MAPBOX_API_KEY']
-    size = "800x600"
+    size = "500x300"
     retina = "true"
-    map_image_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/#{markers_to_string(markers)}/#{size}/#{retina}?access_token=#{mapbox_api_key}"
+    geojson = { type: "MultiPoint", coordinates: markers }.to_json
+    points = CGI.escape(geojson)
+    map_image_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/geojson(#{points})/auto/#{size}?access_token=#{mapbox_api_key}"
 
     travel.update(travel_img_url: map_image_url)
   end
-
-  def markers_to_string(markers)
-    markers.map { |marker| "#{marker[:lng]},#{marker[:lat]}" }.join(",")
-  end
-
-
-def markers_to_string(markers)
-  markers.map { |marker| "#{marker[:lng]},#{marker[:lat]}" }.join(",")
-end
-
 
   def pdf
     @travel = Travel.find(params[:id])
