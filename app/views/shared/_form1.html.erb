@@ -36,7 +36,7 @@
         <div class="carousel-item bg-white p-3 rounded">
           <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
             <div class="questionform p-3 w-100">
-              <h3>Combien de temps souhiatez-vous voyager ? :</h3>
+              <h3>Combien de temps souhaitez-vous voyager ?</h3>
             </div>
             <%= f.input :duration, as: :radio_buttons, legend: false, collection: ['week-end', '1 semaine', '2 semaines'], label_method: lambda { |item| render "shared/labels/duration_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
           </div>
@@ -44,7 +44,7 @@
         <div class="carousel-item bg-white p-3 rounded">
           <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
             <div class="questionform p-3 w-100">
-              <h3>Avec qui voyagez-vous ? :</h3>
+              <h3>Avec qui voyagez-vous ?</h3>
             </div>
             <%= f.input :travelers, as: :radio_buttons, legend: false, collection: ['solo', 'couple', 'famille'], label_method: lambda { |item| render "shared/labels/traveler_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
           </div>
@@ -52,7 +52,7 @@
         <div class="carousel-item bg-white p-3 rounded">
           <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
             <div class="questionform p-3 w-100" >
-              <h3>Où souhaitez-vous partir ? :</h3>
+              <h3>Où souhaitez-vous partir ?</h3>
             </div>
             <%= f.input :type, as: :radio_buttons, legend: false, collection: ['ville', 'plage', 'montagne'], label_method: lambda { |item| render "shared/labels/destination_type_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
           </div>
@@ -60,7 +60,7 @@
         <div class="carousel-item bg-white p-3 rounded position-relative">
           <div class="d-flex align-items-center justify-content-center bg-white px-3 rounded h-100 flex-column">
             <div class="questionform p-3 w-100" >
-              <h3>A quelle période souhaitez-vous partir ? :</h3>
+              <h3>A quelle période souhaitez-vous partir ?</h3>
             </div>
             <%= f.input :season, as: :radio_buttons, legend: false, collection: ['winter', 'spring', 'summer', 'automn'], label_method: lambda { |item| render "shared/labels/season_label", item: item  }, input_html: { class: "d-none category-selector" }, wrapper_html: { class: "d-flex align-items-center justify-content-between" } %>
             <div class="text-center mt-4 w-100 position-absolute" style="bottom: 20px;">
