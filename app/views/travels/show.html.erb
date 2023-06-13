@@ -1,1 +1,56 @@
-hello
+<div class="container">
+  <div class="justify-content-center align-items-center mt-3">
+    <h3 class="text-center p-3"><strong>Choisissez TravelFlex</strong></h3>
+      <div class="row rowalign-item-center justify-content-center">
+        <% Travel.where(user: current_user).each do |t| %>
+        <div class="col">
+          <%= link_to travel_path(t) do %>
+            <div class="card">
+              <%= image_tag 'photo-destination/argentine.jpg', class: "card-img-top" %>
+              <div class="card-body">
+                <p class="card-title text-center"><%= t.destination %></p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+<h1 class="p-4 text-center"><%= @travel.destination %></h1>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <div class="p-4">
+      <div>Budget: <%= @travel.budget %> €</div>
+      <div>Durée: <%= @travel.duration %></div>
+    </div>
+  </div>
+  <div class="col-md-6" id="surroundMap">
+      <% @markers = @travel.activities.map do |activitie| %>
+      <%{ lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
+      <% end %>
+      <div style="width: 100%; height: 500px;"
+      data-controller="map"
+      id="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+  </div>
+</div>
+  <% @travel.activities.each do |a| %>
+
+    <div class="card p-3 mt-4">
+    <div><h3><%= a.jour %></h3></div>
+    <div>Activité: <%= a.title %></div>
+    <div>Localisation: <%= a.localisation %></div>
+    <div>Moyen de transport: <%= a.moyen_de_transport %></div>
+    <div>Description: <%= a.description %>.</div>
+    </div>
+
+  <% end %>
+
+<%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: 'btn btn-home mt-3 mb-3', target: '_blank' %>
+
+</div>
+
+<div id="mapScreenshot"></div>

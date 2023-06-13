@@ -1,32 +1,34 @@
 .btn-card-destination {
   border-radius: 8px;
   color: whitesmoke;
-  background-color: $ocre-flex;
+  background-color: #F89821;
   margin-top: 5px;
   padding: 7px;
   text-decoration: none;
   font-size: 14px;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  // position: absolute;
+  // bottom: 10px;
+  // right: 10px;
 
   &:hover {
     color: white;
-    background-color: #2984DA;
+    background-color: #A5C7C8
   }
 }
 
 .btn-home {
   border-radius: 8px;
   color: whitesmoke;
-  background-color: $ocre-flex;
+  background-color: #F68712;
   margin-top: 5px;
   padding: 7px;
   text-decoration: none;
+  border: #F68712;
+  font-family: $raleway-font;
 
 
   &:hover {
     color: white;
-    background-color: #2984DA;
+    background-color: #A5C7C8
   }
 }

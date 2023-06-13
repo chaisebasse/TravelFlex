@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 import mapboxgl from "mapbox-gl" // Don't forget this!
+import html2canvas from "html2canvas";
+
 
 export default class extends Controller {
   static values = {
@@ -9,18 +11,20 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("ici")
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mboulland/clid1lg0w001v01r059ib46m5"
+      style: "mapbox://styles/mboulland/clid1lg0w001v01r059ib46m5",
+      preserveDrawingBuffer: true
     })
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+    setTimeout(() => {
+      this.#createScreenshot()
+    }, 3000);
   }
-
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
@@ -30,11 +34,17 @@ export default class extends Controller {
     })
   }
 
+  #fitMapToMarkers() {
+    const bounds = new mapboxgl.LngLatBounds()
+    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.map.fitBounds(bounds, { padding: 30, maxZoom: 10, duration: 0 })
+  }
 
-    #fitMapToMarkers() {
-
-        const bounds = new mapboxgl.LngLatBounds()
-        this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-        this.map.fitBounds(bounds, { padding: 30, maxZoom: 10, duration: 0 })
-      }
+  #createScreenshot() {
+    const mapCanvas = document.querySelector('.mapboxgl-canvas');
+    const image_src = mapCanvas.toDataURL();
+    // je vais chercher la div du bouton,
+/*     je prends sont href, et je modifie la valeur de la query image parent
+ */    // mon image_src
+  }
 };
