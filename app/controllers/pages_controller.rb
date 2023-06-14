@@ -32,7 +32,7 @@ class PagesController < ApplicationController
     The destinations should be coherent in terms of distance regarding the duration of the stay.
     Give you responses in French."
 
-    response = querryOpenAi(prompt_completion)
+    response = querry_open_ai(prompt_completion)
     begin
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
@@ -40,15 +40,15 @@ class PagesController < ApplicationController
       destinations_array = JSON.parse(destinations_cleaned2)
       final_array = scraping(destinations_array)
 
-
       redirect_to destinations_path(result: final_array)
     rescue StandardError => e
-      response = querryOpenAi(prompt_completion)
+      response = querry_open_ai(prompt_completion)
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
       final_array = scraping(destinations_array)
+
       redirect_to destinations_path(result: final_array)
     end
   end
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
   def destinations
   end
 
-  def querryOpenAi(prompt_completion)
+  def querry_open_ai(prompt_completion)
     client = OpenAI::Client.new
     response = client.completions(
       parameters: {
@@ -71,11 +71,9 @@ class PagesController < ApplicationController
   def scraping(destinations)
     response = []
     destinations.each do |destination|
-      region = destination["region"].parameterize
-      region.strip!
+      region = destination["region"].parameterize.strip
       region = region.gsub!(/-/, '_') if region.include?("-")
-      country = destination["pays"].parameterize
-      country.strip!
+      country = destination["pays"].parameterize.strip
       country = country.gsub!(/-/, '_') if country.include?("-")
 
       scraper = RoutardScraper.new(region, country).call
@@ -85,7 +83,9 @@ class PagesController < ApplicationController
 
       response << destination
     end
-
+    p response.join.length
+    response.pop if response.join.length >= 10_240
+    p response.join.length
     # soluce quand pas de pays trouvé sur html_file
     return response
   end
