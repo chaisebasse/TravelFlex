@@ -122,7 +122,6 @@ class TravelsController < ApplicationController
     generate_map_image(@travel)
     respond_to do |format|
       format.pdf do
-
         pdf = render_to_string pdf: 'dashboard',
                                template: 'pages/travel',
                                encoding: 'UTF-8',
