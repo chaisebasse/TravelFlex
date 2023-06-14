@@ -141,7 +141,7 @@ class TravelsController < ApplicationController
         pdf = render_to_string pdf: 'dashboard',
                                template: 'pages/travel',
                                encoding: 'UTF-8',
-                               scss: 'pdf'
+                               stylesheets: ['pdf_styles']
         send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
       end
     end
