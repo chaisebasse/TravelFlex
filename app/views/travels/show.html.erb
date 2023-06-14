@@ -1,6 +1,7 @@
 <div class="container mb-5">
   <div class="justify-content-center align-items-center mt-3">
     <h3 class="text-center p-3"><strong>Vos voyages</strong></h3>
+
       <div class="row align-item-center justify-content-center">
         <% travels = Travel.where(user: current_user) %>
 
@@ -28,6 +29,7 @@
         <div>
           Votre destination: <%= @travel.theme %> €
         </div>
+
         <p>
       <%= @travel.description.gsub(/["\\]/, '') %>
       <p><%= @travel.description %></p>
@@ -52,10 +54,10 @@
 
       <div class="card p-3 mt-4">
       <div><h3><%= a.jour %></h3></div>
-      <div>Activité: <%= a.title %></div>
-      <div>Localisation: <%= a.localisation %></div>
-      <div>Moyen de transport: <%= a.moyen_de_transport %></div>
-      <div>Description: <%= a.description %>.</div>
+      <div>Activité : <%= a.title %></div>
+      <div>Localisation : <%= a.localisation %></div>
+      <div>Moyen de transport : <%= a.moyen_de_transport %></div>
+      <div>Description : <%= a.description %>.</div>
       </div>
 
     <% end %>
