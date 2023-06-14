@@ -53,6 +53,7 @@ class TravelsController < ApplicationController
   def details
     destination_choice = params['destination']
     destination_region = params['region']
+    destination_photo = params['photo_url']
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
@@ -86,8 +87,8 @@ class TravelsController < ApplicationController
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
     travel = Travel.create(destination: destination_choice,
-    travel_img_url: session[:query]["travel"]["travel_img_url"],
-    theme: session[:query]["travel"]["theme"],
+    presentation_img_url: destination_photo,
+    theme: destination_region,
     title: "" ,
     duration: session[:query]["travel"]["duration"] ,
     budget: session[:query]["travel"]["budget"],
@@ -121,7 +122,6 @@ class TravelsController < ApplicationController
 
     mapbox_api_key = ENV['MAPBOX_API_KEY']
     size = "500x300"
-    retina = "true"
     geojson = { type: "MultiPoint", coordinates: markers }.to_json
     points = CGI.escape(geojson)
     map_image_url = "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/geojson(#{points})/auto/#{size}?access_token=#{mapbox_api_key}"
@@ -134,7 +134,10 @@ class TravelsController < ApplicationController
     generate_map_image(@travel)
     respond_to do |format|
       format.pdf do
-        pdf = render_to_string pdf: 'dashboard', template: 'pages/travel', encoding: 'UTF-8'
+        pdf = render_to_string pdf: 'dashboard',
+                               template: 'pages/travel',
+                               encoding: 'UTF-8',
+                               scss: 'pdf'
         send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
       end
     end
@@ -147,6 +150,6 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date)
+    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url )
   end
 end

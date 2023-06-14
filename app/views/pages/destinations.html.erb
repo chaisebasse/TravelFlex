@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
     <% params[:result].each_with_index do |destination, index| %>
-      <div class="cardContainer col-4">
+      <div class="cardContainer col-5">
         <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">
           <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
             <div class="cardBis" data-card-target="card">
@@ -12,11 +12,9 @@
                 </div>
             </div>
           </div>
-    </div>
-
-
-
-      </button>
+        </button>
+      </div>
+    
         <div class="modal" id="myModal<%= index %>" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -26,20 +24,24 @@
               </div>
               <div class="modal-body">
                 <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
-                  <p class="p-2 raleway"> <%= destination["text_content"][0] %> <%= destination["text_content"][1] %>..</p>
-                <div style="width: 100%; height: 200px" class="mapform"
+                  <p class="p-2"> <%= destination["text_content"][0] %> <%= destination["text_content"][1] unless destination["text_content"][1].nil? %>..</p>
+
+                <div style="width: 100%; height: 200px;"
                   data-controller="map"
                   data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
                   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
                 </div>
               </div>
               <div class="modal-footer">
-                <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
-                <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region']), class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
-      </div>
-      </div>
-      </div>
-      </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"]),
+                class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
     <% end %>
   </div>

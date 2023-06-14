@@ -1,21 +1,14 @@
-<div class="container">
-  <div class="justify-content-center align-items-center mt-3">
+<div class="wrapper-bis">
 
-    <h1 class="text-center p-3"><strong>Votre carnet de voyage</strong></h1>
 
-      <div class="row rowalign-item-center justify-content-center">
-        <% Travel.where(user: current_user).each do |t| %>
-        <div class="col">
-          <%= link_to travel_path(t) do %>
-            <div class="card">
-              <img class="card-img-top" src="<%= t.destination["img_src"] %>" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-title text-center"><%= t.destination %></p>
-              </div>
-            </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+  <% Travel.where(user: current_user).each do |t| %>
+  <div class="item">
+     <%= link_to travel_path(t) do %>
+    <div class="polaroid"><img src="<%= t.presentation_img_url %>" alt="Card image cap">
+      <div class="caption btn"><%= t.destination %></div>
+    </div>
+    <% end %>
   </div>
+<% end %>
+
 </div>
