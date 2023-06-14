@@ -6,7 +6,7 @@
         <div class="col">
           <%= link_to travel_path(t) do %>
             <div class="card">
-              <%= image_tag 'photo-destination/argentine.jpg', class: "card-img-top" %>
+              <%= destination["img_src"], class: "card-img-top" %>
               <div class="card-body">
                 <p class="card-title text-center"><%= t.destination %></p>
               </div>
