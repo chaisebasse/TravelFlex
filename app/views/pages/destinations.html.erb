@@ -35,7 +35,7 @@
               <div class="modal-footer">
                 <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
 
-                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"]),
+                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"]),
                 class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
 
               </div>
