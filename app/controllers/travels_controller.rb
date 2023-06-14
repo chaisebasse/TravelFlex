@@ -54,6 +54,8 @@ class TravelsController < ApplicationController
     destination_choice = params['destination']
     destination_region = params['region']
     destination_photo = params['photo_url']
+
+    description = params['description']
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
@@ -93,8 +95,9 @@ class TravelsController < ApplicationController
     duration: session[:query]["travel"]["duration"] ,
     budget: session[:query]["travel"]["budget"],
     travelers:session[:query]["travel"]["type_of_travelers"],
-    user: current_user)
-
+    description: description,
+    user: current_user
+  )
     destinations_array.each do |day|
       unless Step.find_by(travel: travel, num_step: day["day"])
         day_step = Step.new(num_step: day["day"])
@@ -152,6 +155,6 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url )
+    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url, :description )
   end
 end

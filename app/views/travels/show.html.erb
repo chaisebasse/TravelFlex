@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container mb-5">
   <div class="justify-content-center align-items-center mt-3">
-    <h3 class="text-center p-3"><strong>Choisissez TravelFlex</strong></h3>
+    <h3 class="text-center p-3"><strong>Vos voyages</strong></h3>
+
       <div class="row align-item-center justify-content-center">
         <% travels = Travel.where(user: current_user) %>
 
@@ -20,21 +21,18 @@
       </div>
   </div>
 
-  <h1 class="p-4 text-center"><%= @travel.destination %></h1>
+  <h1 class="p-4 text-center">Votre voyage:<%= @travel.destination %></h1>
 
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="p-4">
         <div>
-          Budget: <%= @travel.budget %> €
-        </div>
-
-        <div>
-          Durée: <%= @travel.duration %>
+          Votre destination: <%= @travel.theme %> €
         </div>
 
         <p>
-          TEXTE DE DESCRIPTION ROUTARD
+      <%= @travel.description.gsub(/["\\]/, '') %>
+      <p><%= @travel.description %></p>
         </p>
       </div>
     </div>
@@ -56,15 +54,15 @@
 
       <div class="card p-3 mt-4">
       <div><h3><%= a.jour %></h3></div>
-      <div>Activité: <%= a.title %></div>
-      <div>Localisation: <%= a.localisation %></div>
-      <div>Moyen de transport: <%= a.moyen_de_transport %></div>
-      <div>Description: <%= a.description %>.</div>
+      <div>Activité : <%= a.title %></div>
+      <div>Localisation : <%= a.localisation %></div>
+      <div>Moyen de transport : <%= a.moyen_de_transport %></div>
+      <div>Description : <%= a.description %>.</div>
       </div>
 
     <% end %>
 
-  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: 'btn btn-home mt-3 mb-3', target: '_blank' %>
+  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: 'btn btn-home mt-3 mb-5', target: '_blank' %>
 
 </div>
 

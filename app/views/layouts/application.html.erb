@@ -16,12 +16,10 @@
   <body data-controller="navbar">
     <%= render "shared/navbar"%>
     <%= render "shared/flashes" %>
-    <%# <div class="wrapper"> %>
-      <%= yield %>
 
-
-    <%# </div> %>
-
+      <div class="<%= "wrapper" if !current_page?(controller: 'pages', action: 'dashboard') %>">
+        <%= yield %>
+      </div>
 
     <%= render "shared/footer" %>
   </body>
