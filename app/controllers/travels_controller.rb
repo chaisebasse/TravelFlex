@@ -60,21 +60,20 @@ class TravelsController < ApplicationController
     (all the keys and values should be in double quotes).
     Each hash composing this array should be presented as followed :
     {
-    day: ,
+    day: number ,
     activity: ,
     description: ,
     location: ,
     latitude: ,
     longitude: ,
-    transportation if needed:
+    transportation type:
     }
     Destination : #{destination_choice}
     Region: #{destination_region}
     Length of stay :  #{session[:query]["travel"]["duration"]}
     Season: #{session[:query]["travel"]["season"]}
 
-    The locations should be coherent in terms of distance regarding the duration of the stay (limit the distances),
-     take into account the travels beetwen activities.
+    The locations should be coherent in terms of distances regarding the duration of the stay, limit the distances (particulary for short trip).
     Give you responses in French."
 
     client = OpenAI::Client.new
@@ -84,7 +83,6 @@ class TravelsController < ApplicationController
         prompt: prompt_completion,
         max_tokens: 3800
       })
-
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
     travel = Travel.create(destination: destination_choice,
@@ -154,6 +152,7 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url, :description)
+    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date,
+       :travel_img_url, :description, :presentation_img_url)
   end
 end
