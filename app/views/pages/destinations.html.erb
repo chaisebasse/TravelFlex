@@ -14,7 +14,7 @@
           </div>
         </button>
       </div>
-    
+
         <div class="modal" id="myModal<%= index %>" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -35,7 +35,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"]),
+                <%= link_to "Choisir cette destination", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination[:text_content]),
                 class: "btn btn-primary", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
 
               </div>
