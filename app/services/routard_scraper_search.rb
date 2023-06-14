@@ -6,7 +6,7 @@ class RoutardScraperSearch
   def initialize(region, country)
     @region = region
     @country = country
-    GoogleSearch.api_key = "d44a78a8bdb572f6d2c57e02852349329270bf834d8b95cbe23eb282a1d3b459"
+    GoogleSearch.api_key = ENV['GOOGLESEARCH_API_KEY']
   end
 
   def call
@@ -27,7 +27,7 @@ class RoutardScraperSearch
       if p_tag_select.at_css('.lieu-intro').text.present?
         p_tag = p_tag_select.at_css('.lieu-intro').text.strip
       else
-        p_tag = p_tag_select.map(&:text).find(&:present?).strip
+        p_tag = p_tag_select.map(&:text).find(&:present?).text.strip
       end
       return [img_src, p_tag.scan(/[^.]*?(?:\.+|\u2026)(?![.])/)]
     rescue => e

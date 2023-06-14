@@ -6,7 +6,7 @@ class RoutardScraperExtra
   def initialize(region, country)
     @region = region
     @country = country
-    GoogleSearch.api_key = "d44a78a8bdb572f6d2c57e02852349329270bf834d8b95cbe23eb282a1d3b459"
+    GoogleSearch.api_key = ENV['GOOGLESEARCH_API_KEY']
   end
 
   def call
