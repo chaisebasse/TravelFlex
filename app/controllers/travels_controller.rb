@@ -54,7 +54,6 @@ class TravelsController < ApplicationController
     destination_choice = params['destination']
     destination_region = params['region']
     destination_photo = params['photo_url']
-
     description = params['description']
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
@@ -155,6 +154,6 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url, :description )
+    params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date, :travel_img_url, :description)
   end
 end
