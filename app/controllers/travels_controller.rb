@@ -112,6 +112,8 @@ class TravelsController < ApplicationController
     #   }
     # end
     generate_map_image(travel)
+    ScrapingDestination.where(user: current_user).destroy_all
+
     redirect_to travel_path(travel)
   end
 
