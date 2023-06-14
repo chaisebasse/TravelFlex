@@ -1,8 +1,8 @@
 <div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
-    <% params[:result].each_with_index do |destination, index| %>
+    <% JSON.parse(current_user.scraping_destinations.first.content).each do |num_desti, destination| %>
       <div class="cardContainer col-5">
-        <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= index %>">
+        <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= num_desti %>">
           <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
             <div class="cardBis" data-card-target="card">
               <div class="cardBg" style="background-image: url(<%= destination["img_src"] %>);" data-card-target="cardBg"></div>
@@ -15,7 +15,8 @@
         </button>
       </div>
 
-        <div class="modal" id="myModal<%= index %>" tabindex="-1">
+        <div class="modal" id="myModal<%= num_desti %>" tabindex="-1">
+
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -29,13 +30,12 @@
                 <div style="width: 100%; height: 200px;"
                   data-controller="map"
                   data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
-                  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-                </div>
+                  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
               </div>
               <div class="modal-footer">
                 <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
 
-                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination[:text_content]),
+                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"]),
                 class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
 
               </div>

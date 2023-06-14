@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   # html_file = URI.open(url).read
 
   def search_results
+    ScrapingDestination.where(user: current_user).destroy_all
     session[:query] = params
     prompt_completion =
       "I am giving you a length of stay, a season , a type of travel and an average budget.
@@ -38,18 +39,18 @@ class PagesController < ApplicationController
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
-      final_array = scraping(destinations_array)
+      ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
 
-      redirect_to destinations_path(result: final_array)
+      redirect_to destinations_path
     rescue StandardError => e
       response = querry_open_ai(prompt_completion)
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
-      final_array = scraping(destinations_array)
+      ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
 
-      redirect_to destinations_path(result: final_array)
+      redirect_to destinations_path
     end
   end
 
@@ -69,7 +70,8 @@ class PagesController < ApplicationController
   end
 
   def scraping(destinations)
-    response = []
+    response = {}
+    num = 1
     destinations.each do |destination|
       region = destination["region"].parameterize.strip
       region = region.gsub!(/-/, '_') if region.include?("-")
@@ -81,13 +83,11 @@ class PagesController < ApplicationController
       destination["img_src"] = scraper[0]
       destination["text_content"] = scraper[1]
 
-      response << destination
+      response["destination_#{num}"] = destination
+      num += 1
     end
-    p response.join.length
-    response.pop if response.join.length >= 10_240
-    p response.join.length
     # soluce quand pas de pays trouvé sur html_file
-    return response
+    return JSON.generate(response)
   end
 
   def dashboard
