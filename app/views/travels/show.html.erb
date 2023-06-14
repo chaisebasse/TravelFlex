@@ -29,10 +29,9 @@
         <div>
           Votre destination: <%= @travel.theme %>
         </div>
-
+        <br>
         <p>
-      <%= description_cleaned = @travel&.description&.gsub(/["\\]/, '')&.slice(1..-2) %>
-      <p><%=description_cleaned %></p>
+          <%= @travel.parsed_description %>
         </p>
       </div>
     </div>
