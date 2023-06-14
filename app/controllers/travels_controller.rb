@@ -2,7 +2,6 @@ class TravelsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new]
   before_action :set_travel, only: %i[show edit update destroy]
 
-
   def index
     @travels = Travel.all
   end
@@ -19,7 +18,6 @@ class TravelsController < ApplicationController
     @travel = Travel.new(travel_params)
     @travel.user = current_user
   end
-
 
   # def create
   #   @travel = Travel.new(travel_params)
@@ -44,10 +42,7 @@ class TravelsController < ApplicationController
     redirect_to dashboard_path
   end
 
-
   def create_activity
-
-
   end
 
   def details
@@ -70,8 +65,8 @@ class TravelsController < ApplicationController
     }
     Destination : #{destination_choice}
     Region: #{destination_region}
-    Length of stay :  #{session[:query]["travel"]["duration"]}
-    Season: #{session[:query]["travel"]["season"]}
+    Length of stay :  #{session[:query]['travel']['duration']}
+    Season: #{session[:query]['travel']['season']}
 
     The locations should be coherent in terms of distances regarding the duration of the stay, limit the distances (particulary for short trip).
     Give you responses in French."
@@ -82,19 +77,12 @@ class TravelsController < ApplicationController
         model: "text-davinci-003",
         prompt: prompt_completion,
         max_tokens: 3800
-      })
+      }
+    )
+
     destinations = response['choices'][0]['text']
     destinations_array = JSON.parse(destinations)
-    travel = Travel.create(destination: destination_choice,
-    presentation_img_url: destination_photo,
-    theme: destination_region,
-    title: "" ,
-    duration: session[:query]["travel"]["duration"] ,
-    budget: session[:query]["travel"]["budget"],
-    travelers:session[:query]["travel"]["type_of_travelers"],
-    description: description,
-    user: current_user
-  )
+    travel = Travel.create(destination: destination_choice, presentation_img_url: destination_photo, theme: destination_region, title: "" , duration: session[:query]["travel"]["duration"] , budget: session[:query]["travel"]["budget"], travelers:session[:query]["travel"]["type_of_travelers"], description: description, user: current_user)
     destinations_array.each do |day|
       unless Step.find_by(travel: travel, num_step: day["day"])
         day_step = Step.new(num_step: day["day"])
@@ -105,12 +93,14 @@ class TravelsController < ApplicationController
       activitie.step = day_step
       activitie.save
     end
+
     # @markers = travel.activities.map do |activity|
     #   {
     #     lat: activity.lat.to_f,
     #     lng: activity.long.to_f
     #   }
     # end
+
     generate_map_image(travel)
     ScrapingDestination.where(user: current_user).destroy_all
 
@@ -122,7 +112,7 @@ class TravelsController < ApplicationController
       [activity.long.to_f, activity.lat.to_f]
     end
 
-    mapbox_api_key = ENV['MAPBOX_API_KEY']
+    mapbox_api_key = ENV.fetch('MAPBOX_API_KEY')
     size = "500x300"
     geojson = { type: "MultiPoint", coordinates: markers }.to_json
     points = CGI.escape(geojson)
@@ -136,6 +126,7 @@ class TravelsController < ApplicationController
     generate_map_image(@travel)
     respond_to do |format|
       format.pdf do
+
         pdf = render_to_string pdf: 'dashboard',
                                template: 'pages/travel',
                                encoding: 'UTF-8',
