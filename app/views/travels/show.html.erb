@@ -31,7 +31,7 @@
         </div>
 
         <p>
-      <%= description_cleaned = @travel.description.gsub(/["\\]/, '').slice(1..-2) %>
+      <%= description_cleaned = @travel&.description&.gsub(/["\\]/, '')&.slice(1..-2) %>
       <p><%=description_cleaned %></p>
         </p>
       </div>

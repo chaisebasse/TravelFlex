@@ -35,22 +35,23 @@ class PagesController < ApplicationController
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
-      ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
+      sd = ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
 
-      redirect_to destinations_path
+      redirect_to destinations_path(params: { scraping_destination_id: sd.id })
     rescue StandardError => e
       response = querry_open_ai(prompt_completion)
       destinations = response['choices'][0]['text']
       destinations_cleaned = destinations.gsub(/^\s*- /, '')
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
-      ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
+      sd = ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
 
-      redirect_to destinations_path
+      redirect_to destinations_path(params: { scraping_destination_id: sd.id })
     end
   end
 
   def destinations
+    @scraping_destination = ScrapingDestination.find(params[:scraping_destination_id])
   end
 
   def querry_open_ai(prompt_completion)

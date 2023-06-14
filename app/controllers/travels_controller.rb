@@ -46,10 +46,11 @@ class TravelsController < ApplicationController
   end
 
   def details
-    destination_choice = params['destination']
-    destination_region = params['region']
-    destination_photo = params['photo_url']
-    description = params['description']
+    @scraping_destination = ScrapingDestination.find(params[:scraping_destination_id])
+    @destination_choice = params['destination']
+    @destination_region = params['region']
+    @destination_photo = params['photo_url']
+    @description = @scraping_destination.content
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
@@ -63,8 +64,8 @@ class TravelsController < ApplicationController
     longitude: ,
     transportation type:
     }
-    Destination : #{destination_choice}
-    Region: #{destination_region}
+    Destination : #{@destination_choice}
+    Region: #{@destination_region}
     Length of stay :  #{session[:query]['travel']['duration']}
     Season: #{session[:query]['travel']['season']}
 
@@ -80,18 +81,13 @@ class TravelsController < ApplicationController
       }
     )
 
-    destinations = response['choices'][0]['text']
-    destinations_array = JSON.parse(destinations)
-    travel = Travel.create(destination: destination_choice, presentation_img_url: destination_photo, theme: destination_region, title: "" , duration: session[:query]["travel"]["duration"] , budget: session[:query]["travel"]["budget"], travelers:session[:query]["travel"]["type_of_travelers"], description: description, user: current_user)
-    destinations_array.each do |day|
-      unless Step.find_by(travel: travel, num_step: day["day"])
-        day_step = Step.new(num_step: day["day"])
-        day_step.travel = travel
-        day_step.save
-      end
-      activitie = Activity.new(title: day["activity"], status: "Pending", long: day["longitude"] , lat: day["latitude"] , jour: day["day"] ,localisation: day["location"], moyen_de_transport: day["transportation"], description: day["description"] )
-      activitie.step = day_step
-      activitie.save
+    @travel = Travel.create(destination: @destination_choice, presentation_img_url: @destination_photo, theme: @destination_region, title: "" , duration: session[:query]["travel"]["duration"] , budget: session[:query]["travel"]["budget"], travelers:session[:query]["travel"]["type_of_travelers"], description: @description, user: current_user)
+    begin
+      build_travel(response)
+    rescue => exception
+      build_travel(response)
+      flash[:notice] = "oupsi"
+      redirect_to destinations_path
     end
 
     # @markers = travel.activities.map do |activity|
@@ -101,10 +97,10 @@ class TravelsController < ApplicationController
     #   }
     # end
 
-    generate_map_image(travel)
+    generate_map_image(@travel)
     ScrapingDestination.where(user: current_user).destroy_all
 
-    redirect_to travel_path(travel)
+    redirect_to travel_path(@travel)
   end
 
   def generate_map_image(travel)
@@ -137,6 +133,22 @@ class TravelsController < ApplicationController
   end
 
   private
+
+  def build_travel(response)
+    destinations = response['choices'][0]['text']
+    destinations_array = JSON.parse(destinations)
+
+    destinations_array.each do |day|
+      unless Step.find_by(travel: @travel, num_step: day["day"])
+        day_step = Step.new(num_step: day["day"])
+        day_step.travel = @travel
+        day_step.save
+      end
+      activitie = Activity.new(title: day["activity"], status: "Pending", long: day["longitude"] , lat: day["latitude"] , jour: day["day"] ,localisation: day["location"], moyen_de_transport: day["transportation"], description: day["description"] )
+      activitie.step = day_step
+      activitie.save
+    end
+  end
 
   def set_travel
     @travel = Travel.find(params[:id])
