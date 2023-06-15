@@ -54,9 +54,12 @@ class TravelsController < ApplicationController
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
+    The locations should be coherent in terms of distances regarding the duration of the stay, choose activities close
+    to each-others and stay in the region or the city.
+    Give you responses in French.
     Each hash composing this array should be presented as followed :
     {
-    day: number ,
+    day:,
     activity: ,
     description: ,
     location: ,
@@ -67,10 +70,7 @@ class TravelsController < ApplicationController
     Destination : #{@destination_choice}
     Region: #{@destination_region}
     Length of stay :  #{session[:query]['travel']['duration']}
-    Season: #{session[:query]['travel']['season']}
-
-    The locations should be coherent in terms of distances regarding the duration of the stay, limit the distances (particulary for short trip).
-    Give you responses in French."
+    Season: #{session[:query]['travel']['season']} "
 
     client = OpenAI::Client.new
     response = client.completions(
