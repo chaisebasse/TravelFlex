@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   # ==> end
 
   def configure_permitted_parameters
-    attributes = [:username, :email, :photo, :password, :password_confirmation]
+    attributes = [:username, :photo]
 
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
