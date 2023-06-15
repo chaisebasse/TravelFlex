@@ -1,7 +1,7 @@
 .btn-card-destination {
   border-radius: 8px;
   color: whitesmoke;
-  background-color: #F89821;
+  background-color: #000000;
   margin-top: 5px;
   padding: 7px;
   text-decoration: none;
@@ -15,20 +15,24 @@
     background-color: #0AAFE6
   }
 }
+.btn-dark-blue {
+  transition: all ease-in-out 0.3s;
+  border: 1px solid $dark-blue;
+}
+
+.btn-dark-blue:hover {
+  background-color: white !important;
+  color: $dark-blue !important;
+}
 
 .btn-home-one {
-  width: 130px;
   float: right;
   text-align: center;
-  padding: 2px;
   color: white;
   background-color: transparent;
-  padding: 10px;
   text-decoration: none;
   font-family: $ledger-font;
   transition: all 0.5s;
-  // box-shadow : 1px 1px 1px 0px rgb(216,199,188);
-  // opacity: 0.7;
   border: 1px solid white;
 
   &:hover {

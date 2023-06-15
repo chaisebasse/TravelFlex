@@ -1,4 +1,11 @@
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+.carouselExampleIndicators {
+  background-color: $dark-blue;
+}
 
 #new_travel {
   fieldset {
@@ -11,6 +18,10 @@
   }
 }
 
+.carousel-inner {
+  padding-bottom: 60px;
+}
+
 .carousel-inner .form-check {
   padding: 0px 10px;
 }
@@ -19,30 +30,73 @@
   position: relative;
 }
 
+.category-selector {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check-label {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check-label:hover {
+  opacity: 1 !important;
+}
+
 .category-selector:checked + label {
-  border: solid 3px #0AAFE6 !important;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  opacity: 1;
+}
+
+.category-selector:hover + label {
+  opacity: 1;
+}
+
+.category-selector:not(:checked) + label {
+  color: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1));
+  opacity: 0.4;
+}
+
+.carousel-control-next-icon {
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.carousel-control-prev-icon {
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.carousel-bg-color {
+  background-color: $dark-blue;
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: #F68712;
+  background-color: transparent;
+  color: black;
 
-  &:hover {
-    background-color: #0AAFE6;
-  }
+  // &:hover {
+  //   background-color: #000000;
+  // }
 }
 // .carousel-indicators {
 //   bottom: 80px;
 // }
 
 .questionform {
-  color: #0AAFE6;
+  color: #000000;
   text-align: center;
 }
 
 .carousel-item {
-  height: 70vh;
   margin-top: 10px;
 
 }

@@ -1,5 +1,9 @@
 .footer {
+<<<<<<< HEAD
   background: #030922;
+=======
+  background: #ffffff;
+>>>>>>> master
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,7 +12,7 @@
   color: white;
   bottom: 0;
   width: 100%;
-  position: fixed;
+  position: static;
 }
 
 .footer-links {
