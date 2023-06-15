@@ -54,9 +54,12 @@ class TravelsController < ApplicationController
     prompt_completion = "I am giving you a destination, a length of stay, a season.
     Build me a coherent trip with 2 activities per day,takes into account the round trip from Paris, and present those results in JSON that can be parsed in ruby
     (all the keys and values should be in double quotes).
+    The locations should be coherent in terms of distances regarding the duration of the stay, choose activities close
+    to each-others and stay in the region or the city.
+    Give you responses in French.
     Each hash composing this array should be presented as followed :
     {
-    day: number ,
+    day:,
     activity: ,
     description: ,
     location: ,
@@ -67,10 +70,7 @@ class TravelsController < ApplicationController
     Destination : #{@destination_choice}
     Region: #{@destination_region}
     Length of stay :  #{session[:query]['travel']['duration']}
-    Season: #{session[:query]['travel']['season']}
-
-    The locations should be coherent in terms of distances regarding the duration of the stay, limit the distances (particulary for short trip).
-    Give you responses in French."
+    Season: #{session[:query]['travel']['season']} "
 
     client = OpenAI::Client.new
     response = client.completions(
@@ -90,14 +90,8 @@ class TravelsController < ApplicationController
       redirect_to destinations_path
     end
 
-    # @markers = travel.activities.map do |activity|
-    #   {
-    #     lat: activity.lat.to_f,
-    #     lng: activity.long.to_f
-    #   }
-    # end
-
     generate_map_image(@travel)
+
     ScrapingDestination.where(user: current_user).destroy_all
 
     redirect_to travel_path(@travel)
@@ -107,7 +101,6 @@ class TravelsController < ApplicationController
     markers = travel.activities.map do |activity|
       [activity.long.to_f, activity.lat.to_f]
     end
-
     mapbox_api_key = ENV.fetch('MAPBOX_API_KEY')
     size = "500x300"
     geojson = { type: "MultiPoint", coordinates: markers }.to_json
@@ -126,6 +119,7 @@ class TravelsController < ApplicationController
                                template: 'pages/travel',
                                encoding: 'UTF-8',
                                stylesheets: ['pdf_styles']
+
         send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
       end
     end
@@ -157,4 +151,5 @@ class TravelsController < ApplicationController
     params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date,
        :travel_img_url, :description, :presentation_img_url)
   end
+
 end

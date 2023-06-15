@@ -10,14 +10,17 @@
   padding:  0px !important;
 }
 
-.banner h1 {
+.banner-h1 {
   color: white;
+  font-family: $ledger-font;
+  font-size: 30px;
 }
 
-.banner p {
+.banner-p {
   color: white;
   opacity: .7;
   font-size: 20px;
+  font-family: $barlow-font;
 }
 
 .bck-img {

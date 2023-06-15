@@ -11,4 +11,13 @@ $yellow: #FFC65A;
 $orange: #E67E22;
 $green: #1EDD88;
 $gray: #0E0000;
-$light-gray: #ffffff;
+$light-gray: #F4F4F4;
+$dark-blue: #030922;
+
+.bg-dark-blue {
+  background-color: $dark-blue;
+}
+
+.text-dark-blue {
+color: $dark-blue;
+}

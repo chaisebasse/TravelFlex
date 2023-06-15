@@ -12,6 +12,10 @@ class Travel < ApplicationRecord
     self.steps.flat_map(&:activities).map { |activity| [activity.long, activity.lat] }
   end
 
+  def grouped_activities
+    activities.group_by { |act| act.jour }
+  end
+
   def parsed_description
     parsing_json = JSON.parse(self.description).find { |_, value| value['pays'].downcase == self.destination.downcase }
     parsing_json.second["text_content"].join
