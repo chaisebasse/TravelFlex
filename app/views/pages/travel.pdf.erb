@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TravelFlex</title>
+  <title>Trave lFlex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -16,28 +16,30 @@
   </style>
 </head>
 <body>
-<img src="<%= image_url "logo-black.png" %>" width="200"/>
-  <div>
-    <h1><%= @travel.destination %></h1>
+<img src="<%= image_url "logo-black.png" %>" width="250"/>
+  <div class="pdf-title">
+    <h1><%= @travel.destination %>, <%= @travel.theme %></h1>
   </div>
   <div class="card-trip">
-    <img src="<%= @travel.travel_img_url %>" />
     <div class="card-trip-infos">
       <p class="card-trip-activities">
         <% @travel.activities.each do |a| %>
-          <div class="card">
+          <div class="card card-pdf">
             <h3 class="card-title"><%= a.jour %></h3>
             <div class="card-description">
-              <h4>Activité: <%= a.title %></h4>
-              <h4>Localisation: <%= a.localisation %></h4>
-              <h4>Moyen de transport: <%= a.moyen_de_transport %></h4>
-              <h4>Description: <%= a.description %></h4>
+              <h4>Activité : <%= a.title %></h4>
+              <h4>Localisation : <%= a.localisation %></h4>
+              <h4>Moyen de transport : <%= a.moyen_de_transport %></h4>
+              <h4>Description : <%= a.description %></h4>
             </div>
           </div>
         <% end %>
+        <img src="<%= @travel.travel_img_url %>" class="pdf-map"/>
       </p>
     </div>
   </div>
 
 </body>
 </html>
+
+<%# <%= @travel.destination %>
