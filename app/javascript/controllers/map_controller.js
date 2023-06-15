@@ -49,8 +49,8 @@ export default class extends Controller {
           'line-cap': 'round'
           },
         'paint': {
-          'line-color': '#0AAFE6',
-          'line-width': 6
+          'line-color': '#030922' ,
+          'line-width': 4
       }
     });
     });
@@ -58,7 +58,7 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      new mapboxgl.Marker({ color: "#030922" })
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(this.map)
     })

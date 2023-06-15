@@ -11,7 +11,10 @@
 <%# Image %>
 <div style="background-image: url(<%= @travel.presentation_img_url%>); height: 60vh; background-size: cover; background-position: center;" class="w-100 d-flex align-items-center justify-content-center" id="top">
 <%# Image de fond du haut, hauteur 60vh et width: 100% - object fit: cover %>
-  <h1 class="text-white"><%= @travel.theme %></h1>
+ <div class="d-block text-center">
+ <h1 class="text-white"><%= @travel.theme %></h1>
+ <h3 class="text-white"><%= @travel.destination %></h3>
+ </div>
 </div>
 
 <div class="container d-flex align-items-center justify-content-center py-5">
@@ -23,8 +26,8 @@
 
 
 <div class="container text-center py-5 w-75" id="why">
-  <h2 class="mb-5">Pourquoi <%= @travel.theme %> ? </h2>
-  <div class="w-75 mx-auto text-center">
+  <h2 class="mb-5 text-tag ">Pourquoi <%= @travel.theme %> ? </h2>
+  <div class="w-75 mx-auto text-center show-description">
     <%= @travel.parsed_description.truncate(400) %>
   </div>
 </div>
@@ -49,11 +52,16 @@
     <h2 class="mb-5">Le déroulé de votre voyage</h2>
       <div data-controller="timeline">
         <ul>
-          <% @travel.grouped_activities.each do |key, value| %>
+          <% @travel.grouped_activities.each_with_index do |(key, value), i| %>
             <li data-target="timeline.item">
               <% value.each_with_index do |activity, index| %>
               <div class="p-4">
-                <p class="h2"> Jour <%= activity.jour if index == 0 %></p>
+                <% if index == 0  %>
+                <p class="h2"> Jour <%= i + 1%></p>
+                <p class="h4 mt-4">Matin</p>
+                <% else %>
+                <p class="h4">Après-midi</p>
+                <% end %>
                 <p class="border-top border-white pt-3 mt-3"><%= activity.localisation %></p>
                 <p><%= activity.description %></p>
               </div>
