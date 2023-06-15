@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   </head>
 
-  <body data-controller="navbar" class="<%= "carouselExampleIndicators" if current_page?(controller: "pages", action: "search") %>">
+  <body data-controller="navbar" class="<%= "carouselExampleIndicators" if controller_name == 'pages' && action_name == "search" %>">
     <%= render "shared/navbar"%>
     <%= render "shared/flashes"%>
 
