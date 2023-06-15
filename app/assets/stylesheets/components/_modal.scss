@@ -5,11 +5,15 @@
 
 .modal-title {
   color: white;
-  display: flex; align-content:baseline;
+  display: flex; 
+  align-content:baseline;
   font-weight: bold;
   font-family: $ledger-font;
 }
 
+.modal-dialog p {
+  font-family: $barlow-font;
+}
 
 .modal-sous-title {
   color: white;

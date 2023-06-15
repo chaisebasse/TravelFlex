@@ -1,18 +1,13 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= asset_path('gifhomepage.gif')%>)">
-  <div class="container">
+<div class="banner d-flex flex-column align-items-center justify-content-center" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= asset_path('gifhomepage.gif')%>)">
     <h1 class="text-center banner-h1"><strong>Travel Flex, une autre idée du voyage</strong></h1>
-
     <p class="text-center banner-p">Concevoir mon voyage</p>
-      <div class="cards-homepage mt-4">
-        <div class="d-flex justify-content-center flex-column gap-3">
-          <div class="homecard">
-            <%= form_tag url: search_path do %>
-              <%= text_field_tag :destination, nil, class: 'text-center', placeholder: 'Ma destination' %>
-              <%= submit_tag "Voyager", class: "btn-home-one" %>
-            <% end %>
-          </div>
-          <%= link_to "Inspirez-moi", search_path, class: "btn-home-two" %>
-        </div>
+    <div class="cards-homepage mt-4 w-50">
+      <div class="d-flex justify-content-center flex-column homecard">
+        <%= form_tag url: search_path do %>
+          <%= text_field_tag :destination, nil, class: 'text-center', placeholder: 'Ma destination' %>
+          <%= submit_tag "Voyager", class: "btn-home-one px-4 py-2" %>
+        <% end %>
       </div>
-  </div>
+    </div>
+    <%= link_to "Inspirez-moi", search_path, class: "bg-dark-blue px-4 py-2 text-white text-decoration-none btn-dark-blue" %>
 </div>

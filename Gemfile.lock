@@ -165,17 +165,15 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.2-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pdf-core (0.9.0)
     pg (1.5.3)
     popper_js (2.11.7)
-    prawn (2.4.0)
-      pdf-core (~> 0.9.0)
-      ttfunk (~> 1.7)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -255,7 +253,6 @@ GEM
     thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
-    ttfunk (1.7.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -286,6 +283,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-darwin-21
   x86_64-darwin-22
   x86_64-linux
@@ -304,7 +302,6 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
-  prawn
   pry-byebug
   puma (~> 5.0)
   pundit
