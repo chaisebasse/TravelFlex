@@ -16,10 +16,14 @@
   }
 }
 
-.btn-home {
+.btn-home-one {
+  width: 130px;
+  float: right;
+  text-align: center;
+  padding: 2px;
   color: white;
   background-color: transparent;
-  padding: 7px;
+  padding: 10px;
   text-decoration: none;
   font-family: $ledger-font;
   transition: all 0.5s;
@@ -34,14 +38,49 @@
   }
 }
 
+.btn-home-two {
+  width: 170px;
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  padding: 20px;
+  text-decoration: none;
+  font-family: $ledger-font;
+  transition: all 0.5s;
+  // box-shadow : 1px 1px 1px 0px rgb(216,199,188);
+  // opacity: 0.7;
+  border: 1px solid white;
+  margin: 0 auto;
+
+  &:hover {
+    color: black;
+    background-color: #fff;
+    // opacity: 1;
+  }
+}
+
 // .input-home {
 //   width: 100px;
 //   transition: all 2s ease-out;
 // }
 
 #destination {
+  margin-top: 20px;
   border: none;
+  width: 80%;
+  border-bottom: 1px solid white;
   font-family: $barlow-font;
   background-color: transparent;
-  color: lightgray;
+  text-align: left !important;
+  color: white;
+
+  &:focus {
+    outline: none !important;
+  }
+
+}
+
+#destination::placeholder {
+  color: white;
+  font-size: 20px;
 }
