@@ -22,7 +22,7 @@
 
               <div class="modal-header">
                 <h5 class="modal-title"><%= destination["pays"]%>,  <%= destination["region"]%></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
               <div class="modal-body">
@@ -37,7 +37,7 @@
 
               <div class="modal-footer">
                 <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
-                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"], scraping_destination_id: @scraping_destination.id), class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
+                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"], scraping_destination_id: @scraping_destination.id), class: "btn btn-home-one", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
               </div>
             </div>
           </div>
