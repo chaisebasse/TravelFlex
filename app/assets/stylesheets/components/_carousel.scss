@@ -1,3 +1,9 @@
+body {
+  background-image: image-url('carousel/sebastian-unrau-sp-p7uuT0tw-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #new_travel {
   fieldset {
     display: flex;
@@ -30,6 +36,9 @@
     background-color: #0AAFE6;
   }
 }
+// .carousel-indicators {
+//   bottom: 80px;
+// }
 
 .questionform {
   color: #0AAFE6;
@@ -38,9 +47,14 @@
 
 .carousel-item {
   height: 70vh;
+  margin-top: 10px;
+
+}
+
+.bg-white {
+  background-color: transparent
 }
 
 h3 {
-  font-style: italic;
   font-weight: bold;
 }

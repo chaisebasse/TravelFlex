@@ -11,6 +11,9 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <%= favicon_link_tag "favicon.png", rel: "icon", type: "image/png" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+      <%= File.read(Rails.root.join("app", "assets", "stylesheets", "pdf_styles.scss.erb")) %>
+    </style>
   </head>
 <body>
 <h1><%= @travel.destination %></h1>

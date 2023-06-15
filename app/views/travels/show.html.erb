@@ -1,9 +1,11 @@
+
 <%# PDF et Return sticky-top %>
 <div class="d-flex w-100 justify-content-between align-items-center py-4 px-2 sticky sticky-top-height">
   <%= link_to dashboard_path,  class:"px-4 py-3 text-dark text-decoration-none" do%>
   <i class="fa-sharp fa-solid fa-arrow-left me-3"></i> Retour
   <% end %>
   <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: "bg-dark px-4 py-3 text-white text-decoration-none", target: '_blank' %>
+
 </div>
 
 <%# Image %>
@@ -22,7 +24,7 @@
 
 <div class="container text-center py-5" id="why">
   <h2>Pourquoi <%= @travel.theme %> ? </h2>
-  <% description_cleaned = @travel.description.gsub(/["\\]/, '').slice(1..-2) %>
+    <%= @travel.parsed_description %>
   <div class="w-75 mx-auto text-center">
     <%= description_cleaned %>
   </div>

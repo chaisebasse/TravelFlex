@@ -17,22 +17,31 @@
 }
 
 .btn-home {
-  border-radius: 8px;
-  color: whitesmoke;
-  background-color: #F68712;
+  color: white;
+  background-color: transparent;
   padding: 7px;
   text-decoration: none;
-  border: #F68712;
-  font-family: $raleway-font;
-
+  font-family: $ledger-font;
+  transition: all 0.5s;
+  // box-shadow : 1px 1px 1px 0px rgb(216,199,188);
+  // opacity: 0.7;
+  border: 1px solid white;
 
   &:hover {
-    color: white;
-    background-color: #0AAFE6
+    color: black;
+    background-color: #fff;
+    // opacity: 1;
   }
 }
 
+// .input-home {
+//   width: 100px;
+//   transition: all 2s ease-out;
+// }
+
 #destination {
   border: none;
-  font-family: $raleway-font;
+  font-family: $-font;
+  background-color: transparent;
+  color: lightgray
 }
