@@ -6,12 +6,12 @@
       <div class="cards-homepage mt-4">
         <div class="d-flex justify-content-center gap-3">
           <div class="homecard">
-            <%= form_tag(search_path, method: "get") do %>
-              <%= text_field_tag :destination, "Ma destination", class: 'text-center banner-p' %>
-              <%= submit_tag "Y aller !", class: "btn-home-white" %>
+            <%= form_tag url: search_path do %>
+              <%= text_field_tag :destination, "Ma destination", class: 'text-center' %>
+              <%= submit_tag "Y aller !", class: "btn-home" %>
             <% end %>
           </div>
-          <%= link_to "Inspirez-moi", search_path, class: "btn-home-orange" %>
+          <%= link_to "Inspirez-moi", search_path, class: "btn-home" %>
         </div>
       </div>
   </div>
