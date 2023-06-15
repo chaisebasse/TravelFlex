@@ -19,10 +19,12 @@
 
           <div class="modal-dialog">
             <div class="modal-content">
+
               <div class="modal-header">
                 <h5 class="modal-title"><%= destination["pays"]%>,  <%= destination["region"]%></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+
               <div class="modal-body">
                 <img class="card-img-top" src="<%= destination["img_src"] %>" alt="Card image cap">
                   <p class="p-2"> <%= destination["text_content"][0] %> <%= destination["text_content"][1] unless destination["text_content"][1].nil? %>..</p>
@@ -32,11 +34,10 @@
                   data-map-markers-value="<%=[{lat: destination["lat"].to_f, lng: destination["long"].to_f}].to_json %>"
                   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
               </div>
+
               <div class="modal-footer">
                 <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
-
-
-                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"], scraping_destination_id: @scraping_destination.id), class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
+                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"], scraping_destination_id: @scraping_destination.id), class: "btn btn-home-one", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
               </div>
             </div>
           </div>
@@ -45,5 +46,3 @@
     <% end %>
   </div>
 </div>
-
-

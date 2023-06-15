@@ -1,25 +1,30 @@
+.modal-header {
+  color: white;
+  background-color: #030922;
+}
+
 .modal-title {
-  color: #0AAFE6;
+  color: white;
   display: flex; align-content:baseline;
   font-weight: bold;
-  font-family: "Raleway";
+  font-family: $ledger-font;
 }
+
 
 .modal-sous-title {
-  color: #0AAFE6;
+  color: white;
+  background-color: #030922;
   display: flex; align-content: center;
   font-weight: bold;
-  font-family: "Raleway";
+  font-family: $barlow-font;
 }
 
-.card-img-top {
-  border-radius: 8px;
+.modal-body {
+  color: white;
+  background-color: #030922;
 }
 
-.mapform {
-  border-radius: 8px;
-}
-
-.modal-content {
-  border-radius: 8px;
+.modal-footer {
+  color: white;
+  background-color: #030922;
 }
