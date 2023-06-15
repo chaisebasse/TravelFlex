@@ -105,12 +105,7 @@ class TravelsController < ApplicationController
       activitie.step = day_step
       activitie.save
     end
-    # @markers = travel.activities.map do |activity|
-    #   {
-    #     lat: activity.lat.to_f,
-    #     lng: activity.long.to_f
-    #   }
-    # end
+
     generate_map_image(travel)
     ScrapingDestination.where(user: current_user).destroy_all
 

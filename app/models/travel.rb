@@ -11,4 +11,8 @@ class Travel < ApplicationRecord
   def step_coordinates
     self.steps.flat_map(&:activities).map { |activity| [activity.long, activity.lat] }
   end
+
+  def grouped_activities
+    activities.group_by { |act| act.jour }
+  end
 end

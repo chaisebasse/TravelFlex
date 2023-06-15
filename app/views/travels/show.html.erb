@@ -1,69 +1,64 @@
-<div class="container mb-5">
-  <div class="justify-content-center align-items-center mt-3">
-    <h3 class="text-center p-3"><strong>Vos voyages</strong></h3>
-
-      <div class="row align-item-center justify-content-center">
-        <% travels = Travel.where(user: current_user) %>
-
-        <% travels.each do |t| %>
-          <div class="col">
-            <%= link_to travel_path(t) do %>
-              <div class="card">
-                <%= image_tag t.presentation_img_url, class: "card-img-top" %>
-
-                <div class="card-body">
-                  <p class="card-title text-center"><%= t.destination %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-  </div>
-
-  <h1 class="p-4 text-center">Votre voyage:<%= @travel.destination %></h1>
-
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="p-4">
-        <div>
-          Votre destination: <%= @travel.theme %>
-        </div>
-
-        <p>
-      <%= description_cleaned = @travel.description.gsub(/["\\]/, '').slice(1..-2) %>
-      <p><%=description_cleaned %></p>
-        </p>
-      </div>
-    </div>
-
-    <div class="col-md-6" id="surroundMap">
-        <% @markers = @travel.activities.map do |activitie| %>
-          <% { lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
-        <% end %>
-        <div style="width: 100%; height: 500px;"
-        data-controller="map"
-        id="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-map-coordinates-value="<%= @travel.step_coordinates %>">
-        </div>
-    </div>
-  </div>
-    <% @travel.activities.each do |a| %>
-
-      <div class="card p-3 mt-4">
-      <div><h3><%= a.jour %></h3></div>
-      <div>Activité : <%= a.title %></div>
-      <div>Localisation : <%= a.localisation %></div>
-      <div>Moyen de transport : <%= a.moyen_de_transport %></div>
-      <div>Description : <%= a.description %>.</div>
-      </div>
-
-    <% end %>
-
-  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: 'btn btn-home mt-3 mb-5', target: '_blank' %>
-
+<%# PDF et Return sticky-top %>
+<div class="d-flex w-100 justify-content-between align-items-center py-4 px-2 sticky sticky-top-height">
+  <%= link_to dashboard_path,  class:"px-4 py-3 text-dark text-decoration-none" do%>
+  <i class="fa-sharp fa-solid fa-arrow-left me-3"></i> Retour
+  <% end %>
+  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: "bg-dark px-4 py-3 text-white text-decoration-none", target: '_blank' %>
 </div>
 
-<div id="mapScreenshot"></div>
+<%# Image %>
+<div style="background-image: url(<%= @travel.presentation_img_url%>); height: 60vh; background-size: cover; background-position: center;" class="w-100 d-flex align-items-center justify-content-center" id="top">
+<%# Image de fond du haut, hauteur 60vh et width: 100% - object fit: cover %>
+<h1 class="text-white"><%= @travel.theme %></h1>
+</div>
+
+<div class="container d-flex align-items-center justify-content-center py-5">
+  <%= link_to "Pourquoi ?" , "#why", class: "rounded-pill text-secondary text-decoration-none px-3 py-2 mx-3  border border-secondary" %>
+  <%= link_to "Itinéraire" , "#surroundMap", class: "rounded-pill text-secondary text-decoration-none px-3 py-2 mx-3 border border-secondary" %>
+  <%= link_to "Déroulé",  "#timeline", class: "rounded-pill text-secondary text-decoration-none px-3 py-2 mx-3 border border-secondary"%>
+  <%= link_to "Haut de page", "#top", class: "rounded-pill text-secondary text-decoration-none px-3 py-2 mx-3 border border-secondary" %>
+</div>
+
+
+<div class="container text-center py-5" id="why">
+  <h2>Pourquoi <%= @travel.theme %> ? </h2>
+  <% description_cleaned = @travel.description.gsub(/["\\]/, '').slice(1..-2) %>
+  <div class="w-75 mx-auto text-center">
+    <%= description_cleaned %>
+  </div>
+</div>
+
+<div class="container p-5" id="surroundMap">
+  <% @markers = @travel.activities.map do |activitie| %>
+    <% { lat: activitie.lat.to_f, lng: activitie.long.to_f } %>
+  <% end %>
+  <div style="width: 100%; height: 60vh ;"
+    data-controller="map"
+    id="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-map-coordinates-value="<%= @travel.step_coordinates %>">
+  </div>
+</div>
+
+
+<div class="container py-5" id="timeline">
+
+  <div class="timeline-background text-center">
+    <h2>Le déroulé de votre voyage</h2>
+      <div data-controller="timeline">
+        <ul>
+          <% @travel.grouped_activities.each do |key, value| %>
+            <li data-target="timeline.item">
+              <% value.each_with_index do |activity, index| %>
+              <div>
+                <p class="h2"><%= activity.jour if index == 0 %></p>
+                <p><%= activity.title %></p>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
