@@ -3,6 +3,9 @@ body {
   background-size: cover;
 }
 
+.carouselExampleIndicators {
+  background-color: $dark-blue;
+}
 
 #new_travel {
   fieldset {
@@ -28,12 +31,24 @@ body {
   opacity: 0.6;
 }
 
-.carousel-control-next {
-  color: black;
+.carousel-control-next-icon {
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
-.carousel-control-next-icon {
-  color: black;
+.carousel-control-prev-icon {
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.carousel-bg-color {
+  background-color: $dark-blue;
 }
 
 .carousel-indicators [data-bs-target] {
