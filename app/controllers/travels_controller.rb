@@ -128,8 +128,13 @@ class TravelsController < ApplicationController
   private
 
   def build_travel(response)
-    destinations = response['choices'][0]['text']
-    destinations_array = JSON.parse(destinations)
+    if response['choices'][0]['text'].match?(/\A\'.*/)
+      destinations = "'" + response['choices'][0]['text'].split(/\A\'.*/).last
+      destinations_array = JSON.parse(destinations)
+    else
+      destinations = response['choices'][0]['text']
+      destinations_array = JSON.parse(destinations)
+    end
 
     destinations_array.each do |day|
       unless Step.find_by(travel: @travel, num_step: day["day"])
