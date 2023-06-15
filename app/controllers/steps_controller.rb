@@ -1,3 +1,2 @@
 class StepsController < ApplicationController
-
 end
