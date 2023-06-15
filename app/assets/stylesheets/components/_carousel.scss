@@ -1,3 +1,7 @@
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 
 #new_travel {
@@ -20,24 +24,32 @@
 }
 
 .category-selector:checked + label {
-  border: solid 3px #0AAFE6 !important;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  color: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
+  opacity: 0.6;
+}
+
+.carousel-control-next {
+  color: black;
+}
+
+.carousel-control-next-icon {
+  color: black;
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: #F68712;
+  background-color: transparent;
+  color: black;
 
-  &:hover {
-    background-color: #0AAFE6;
-  }
+  // &:hover {
+  //   background-color: #000000;
+  // }
 }
 // .carousel-indicators {
 //   bottom: 80px;
 // }
 
 .questionform {
-  color: #0AAFE6;
+  color: #000000;
   text-align: center;
 }
 
