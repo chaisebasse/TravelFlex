@@ -15,12 +15,14 @@
 
   <body data-controller="navbar">
     <%= render "shared/navbar"%>
-    <%= render "shared/flashes" %>
+    <%= render "shared/flashes"%>
 
-      <div class="<%= "wrapper" if !current_page?(controller: 'pages', action: 'dashboard') %>">
+      <div class="<%= 'wrapper' unless controller_name == 'pages' && action_name == "dashboard" %>">
         <%= yield %>
       </div>
 
-    <%= render "shared/footer" %>
+    <% unless controller_name == "pages" && action_name =="home"%>
+      <%= render "shared/footer" %>
+    <% end %>
   </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
-    <% JSON.parse(current_user.scraping_destinations.first.content).each do |num_desti, destination| %>
+    <% JSON.parse(@scraping_destination.content).each do |num_desti, destination| %>
       <div class="cardContainer col-5">
         <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= num_desti %>">
           <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
@@ -35,9 +35,8 @@
               <div class="modal-footer">
                 <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
 
-                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"]),
-                class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
 
+                <%= link_to "Y aller !", details_path(destination: destination['pays'], region: destination['region'], photo_url: destination["img_src"], description: destination["text_content"], description: destination["presentation_img_url"], scraping_destination_id: @scraping_destination.id), class: "btn btn-card-destination", data: { controller: "destinations", action: "click->destinations#selectElement", destinationChoice: destination["pays"] } %>
               </div>
             </div>
           </div>

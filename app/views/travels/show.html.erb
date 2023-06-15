@@ -27,12 +27,11 @@
     <div class="col-md-6">
       <div class="p-4">
         <div>
-          Votre destination: <%= @travel.theme %> €
+          Votre destination: <%= @travel.theme %>
         </div>
-
+        <br>
         <p>
-      <%= @travel.description.gsub(/["\\]/, '') %>
-      <p><%= @travel.description %></p>
+          <%= @travel.parsed_description %>
         </p>
       </div>
     </div>
