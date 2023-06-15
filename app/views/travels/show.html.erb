@@ -4,7 +4,7 @@
   <%= link_to dashboard_path,  class:"px-4 py-3 text-dark text-decoration-none" do%>
   <i class="fa-sharp fa-solid fa-arrow-left me-3 text-dark-blue"></i> Retour
   <% end %>
-  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: "bg-dark-blue px-4 py-3 text-white text-decoration-none", target: '_blank' %>
+  <%= link_to 'Télécharger PDF', pdf_travel_path(@travel, format: :pdf, image: 'toto'), class: "bg-dark-blue px-4 py-2 text-white text-decoration-none", target: '_blank' %>
 
 </div>
 
@@ -45,9 +45,7 @@
   </div>
 </div>
 
-
 <div class="container my-5">
-
   <div class="timeline-background text-center"  id="timeline">
     <h2 class="mb-5">Le déroulé de votre voyage</h2>
       <div data-controller="timeline">
@@ -58,8 +56,9 @@
               <div class="p-4">
                 <% if index == 0  %>
                 <p class="h2"> Jour <%= i + 1%></p>
+                <p class="h4 mt-4">Matin</p>
                 <% else %>
-                <p class="h2">Aprés-midi</p>
+                <p class="h4">Après-midi</p>
                 <% end %>
                 <p class="border-top border-white pt-3 mt-3"><%= activity.localisation %></p>
                 <p><%= activity.description %></p>

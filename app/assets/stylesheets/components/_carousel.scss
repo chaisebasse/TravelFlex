@@ -18,6 +18,10 @@ body {
   }
 }
 
+.carousel-inner {
+  padding-bottom: 60px;
+}
+
 .carousel-inner .form-check {
   padding: 0px 10px;
 }
@@ -26,9 +30,33 @@ body {
   position: relative;
 }
 
+.category-selector {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check-label {
+  transition: all ease-in-out 0.3s;
+}
+
+.form-check-label:hover {
+  opacity: 1 !important;
+}
+
 .category-selector:checked + label {
-  color: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
-  opacity: 0.6;
+  opacity: 1;
+}
+
+.category-selector:hover + label {
+  opacity: 1;
+}
+
+.category-selector:not(:checked) + label {
+  color: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1));
+  opacity: 0.4;
 }
 
 .carousel-control-next-icon {
@@ -69,7 +97,6 @@ body {
 }
 
 .carousel-item {
-  height: 70vh;
   margin-top: 10px;
 
 }
