@@ -90,14 +90,8 @@ class TravelsController < ApplicationController
       redirect_to destinations_path
     end
 
-    # @markers = travel.activities.map do |activity|
-    #   {
-    #     lat: activity.lat.to_f,
-    #     lng: activity.long.to_f
-    #   }
-    # end
-
     generate_map_image(@travel)
+
     ScrapingDestination.where(user: current_user).destroy_all
 
     redirect_to travel_path(@travel)
