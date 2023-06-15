@@ -20,22 +20,25 @@
   <div class="pdf-title">
     <h1><%= @travel.destination %>, <%= @travel.theme %></h1>
   </div>
+
   <div class="card-trip">
     <div class="card-trip-infos">
-      <p class="card-trip-activities">
+      <div class="card-trip-activities">
         <% @travel.activities.each do |a| %>
           <div class="card card-pdf">
             <h3 class="card-title"><%= a.jour %></h3>
             <div class="card-description">
-              <h4>Activité : <%= a.title %></h4>
-              <h4>Localisation : <%= a.localisation %></h4>
-              <h4>Moyen de transport : <%= a.moyen_de_transport %></h4>
-              <h4>Description : <%= a.description %></h4>
+              <h4><strong>Activité :</strong> <%= a.title %></h4>
+              <h4><strong>Localisation :</strong> <%= a.localisation %></h4>
+              <h4><strong>Moyen de transport :</strong> <%= a.moyen_de_transport %></h4>
+              <h4><strong>Description :</strong> <%= a.description %></h4>
             </div>
           </div>
         <% end %>
-        <img src="<%= @travel.travel_img_url %>" class="pdf-map"/>
-      </p>
+        <div class="pdf-map">
+          <img src="<%= @travel.travel_img_url %>">
+        </div>
+      </div>
     </div>
   </div>
 

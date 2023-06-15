@@ -1,11 +1,11 @@
 .footer {
-  background: #F4F4F4;
+  background: #030922;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 50px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: white;
   bottom: 0;
   width: 100%;
   position: fixed;
@@ -25,6 +25,6 @@
 .footer-links a:hover {
   opacity: 1;
 }
-.footer .fa-heart {
-  color: #D23333;
-}
+// .footer .fa-heart {
+//   color: #D23333;
+// }
