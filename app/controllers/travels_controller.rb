@@ -107,7 +107,6 @@ class TravelsController < ApplicationController
     markers = travel.activities.map do |activity|
       [activity.long.to_f, activity.lat.to_f]
     end
-
     mapbox_api_key = ENV.fetch('MAPBOX_API_KEY')
     size = "500x300"
     geojson = { type: "MultiPoint", coordinates: markers }.to_json
@@ -126,6 +125,7 @@ class TravelsController < ApplicationController
                                template: 'pages/travel',
                                encoding: 'UTF-8',
                                stylesheets: ['pdf_styles']
+
         send_data pdf, filename: 'votre_voyage.pdf', type: 'application/pdf', disposition: 'attachment'
       end
     end
@@ -157,4 +157,5 @@ class TravelsController < ApplicationController
     params.require(:travel).permit(:theme, :duration, :budget, :travelers, :starting_date,
        :travel_img_url, :description, :presentation_img_url)
   end
+
 end

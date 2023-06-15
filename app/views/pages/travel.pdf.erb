@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TravelFlex</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TravelFlex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-    <%= favicon_link_tag "favicon.png", rel: "icon", type: "image/png" %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <style>
-      <%= File.read(Rails.root.join("app", "assets", "stylesheets", "pdf_styles.scss.erb")) %>
-    </style>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+  <%= favicon_link_tag "favicon.png", rel: "icon", type: "image/png" %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <style>
+    <%= File.read(Rails.root.join("app", "assets", "stylesheets", "pdf_styles.scss.erb")) %>
+  </style>
+</head>
 <body>
-<h1><%= @travel.destination %></h1>
-  <div class="container">
-            <h2>Budget: <%= @travel.budget %></h2>
-            <h2>Durée: <%= @travel.duration %></h2>
-            <img src="<%= @travel.travel_img_url %>" alt="Carte du voyage">
+<img src="<%= image_url "logo.png" %>" width="200"/>
+  <div>
+    <h1><%= @travel.destination %></h1>
   </div>
-      <% @travel.activities.each do |a| %>
-          <div><h3><%= a.jour %></h3></div>
-          <div>Activité: <%= a.title %></div>
-          <div>Localisation: <%= a.localisation %></div>
-          <div>Moyen de transport: <%= a.moyen_de_transport %></div>
-          <div>Description: <%= a.description %></div>
-      <% end %>
+  <div class="card-trip">
+    <img src="<%= @travel.travel_img_url %>" />
+    <div class="card-trip-infos">
+      <p class="card-trip-activities">
+        <% @travel.activities.each do |a| %>
+          <div class="card">
+            <h3 class="card-title"><%= a.jour %></h3>
+            <div class="card-description">
+              <h4>Activité: <%= a.title %></h4>
+              <h4>Localisation: <%= a.localisation %></h4>
+              <h4>Moyen de transport: <%= a.moyen_de_transport %></h4>
+              <h4>Description: <%= a.description %></h4>
+            </div>
+          </div>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
 </body>
 </html>
