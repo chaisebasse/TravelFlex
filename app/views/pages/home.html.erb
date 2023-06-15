@@ -1,17 +1,17 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= asset_path('gifhomepage.gif')%>)">
   <div class="container">
-    <h1 class="text-center"><strong>Travel Flex, une autre idée du voyage</strong></h1>
+    <h1 class="text-center banner-h1"><strong>Travel Flex, une autre idée du voyage</strong></h1>
 
-    <p class="text-center">Concevoir mon voyage</p>
+    <p class="text-center banner-p">Concevoir mon voyage</p>
       <div class="cards-homepage mt-4">
         <div class="d-flex justify-content-center gap-3">
           <div class="homecard">
             <%= form_tag(search_path, method: "get") do %>
-              <%= text_field_tag :destination, "Ma destination", class: 'text-center' %>
-              <%= submit_tag "Y aller !", class: "btn-home" %>
+              <%= text_field_tag :destination, "Ma destination", class: 'text-center banner-p' %>
+              <%= submit_tag "Y aller !", class: "btn-home-white" %>
             <% end %>
           </div>
-          <%= link_to "Inspirez-moi", search_path, class: "btn-home" %>
+          <%= link_to "Inspirez-moi", search_path, class: "btn-home-orange" %>
         </div>
       </div>
   </div>
