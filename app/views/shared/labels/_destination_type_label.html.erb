@@ -1,17 +1,17 @@
 <div class="d-flex align-items-center justify-content-between">
   <% if item == "ville" %>
     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/destination/ville.png"%>)">
-    City Trip
+      <p class="ms-3 mb-4">City Trip</p>
     </div>
 
 
   <% elsif item == "plage" %>
     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/destination/plage.png"%>)">
-    Plage
+      <p class="ms-3 mb-4">Plage</p>
     </div>
 
   <% else %>
     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path "carousel/destination/montagne.png"%>)">
-    Montagne
+      <p class="ms-3 mb-4">Montagne</p>
   <% end %>
 </div>
