@@ -24,13 +24,13 @@
   position:relative;
   list-style-type: none;
   width: 3px;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: $dark-blue;
   margin: 0 auto;
   padding-top: 50px;
 }
 
 .timeline-background ul li::after {
-  background: rgba(0,0,0, 0.8);
+  background: $dark-blue;
   content: '';
   width: 25px;
   height: 25px;
@@ -81,6 +81,10 @@
 }
 
 .timeline-background ul li.show div {
+  background-color: $dark-blue;
+  border-radius: 0px;
+  color: white;
+  text-align: start;
   transform: none;
   visibility: visible;
   opacity: 1;
@@ -106,4 +110,11 @@
 .mapboxgl-map{
   position: sticky !important;
   top: 80px;
+}
+
+
+#timeline{
+
+  scroll-margin-top: 500px;
+
 }
