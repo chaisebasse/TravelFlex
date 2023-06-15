@@ -16,19 +16,41 @@
   }
 }
 
-.btn-home {
+.btn-home-orange {
   border-radius: 8px;
   color: whitesmoke;
   background-color: #F68712;
   padding: 7px;
   text-decoration: none;
   border: #F68712;
-  font-family: $raleway-font;
-
+  font-family: $mochiy-font;
+  transition: all 0.5s;
+  box-shadow : 1px 1px 1px 0px rgb(216,199,188);
+  // opacity: 0.7;
 
   &:hover {
     color: white;
-    background-color: #0AAFE6
+    background-color: #F68712;
+    // opacity: 1;
+  }
+}
+
+.btn-home-white {
+  border-radius: 8px;
+  color: #F68712;
+  background-color: whitesmoke;
+  padding: 7px;
+  text-decoration: none;
+  border: whitesmoke;
+  font-family: $mochiy-font;
+  transition: all 0.5s;
+  box-shadow : 1px 1px 1px 0px rgb(216,199,188);
+  // opacity: 0.7;
+
+  &:hover {
+    color: #F68712;
+    background-color: whitesmoke;
+    // opacity: 1;
   }
 }
 
