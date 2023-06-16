@@ -44,6 +44,8 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-binary"
 gem "wkhtmltopdf-heroku", group: :production
 
+gem 'rack-timeout'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
