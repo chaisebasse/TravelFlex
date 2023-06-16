@@ -2,7 +2,7 @@
 # require "nokogiri"
 # require 'google_search_results'
 
-# class RoutardScraperSearch
+class RoutardScraperSearch
 #   def initialize(region, country)
 #     @region = region
 #     @country = country
@@ -34,4 +34,4 @@
 #       RoutardScraperExtra.new(@region, @country).call
 #     end
 #   end
-# end
+end
