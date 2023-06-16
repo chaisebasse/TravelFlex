@@ -5,10 +5,11 @@
 
 .modal-title {
   color: white;
-  display: flex; 
+  display: flex;
   align-content:baseline;
   font-weight: bold;
   font-family: $ledger-font;
+  font-size: 50px;
 }
 
 .modal-dialog p {
