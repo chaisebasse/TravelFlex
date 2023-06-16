@@ -15,7 +15,7 @@ $light-gray: #F4F4F4;
 $dark-blue: #030922;
 
 .bg-dark-blue {
-  background-color: $dark-blue;
+  background-color: $dark-blue !important;
 }
 
 .text-dark-blue {
