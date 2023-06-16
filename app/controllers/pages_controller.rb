@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     prompt_completion =
       "I am giving you a length of stay, a season , a type of travel and an average budget.
 
-    Can you find me 5 destinations excluding France and Royaume-Uni,
+    Can you find me 4 destinations excluding France and Royaume-Uni,
     present those result in JSON that can be parsed in ruby (all the keys and values should be in double quotes).
     Each hash composing this array should be presented as followed :
     {
@@ -45,7 +45,7 @@ class PagesController < ApplicationController
       destinations_cleaned2 = destinations_cleaned.gsub(/–/, '-')
       destinations_array = JSON.parse(destinations_cleaned2)
       sd = ScrapingDestination.create!(content: scraping(destinations_array), user: current_user)
-      
+
       redirect_to destinations_path(params: { scraping_destination_id: sd.id })
     end
   end
