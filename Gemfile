@@ -41,8 +41,10 @@ gem 'google_search_results', '~> 2.2'
 
 #Génération de PDF
 gem 'wicked_pdf'
-gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-binary"
 gem "wkhtmltopdf-heroku", group: :production
+
+gem 'rack-timeout'
 
 
 # Use Redis adapter to run Action Cable in production

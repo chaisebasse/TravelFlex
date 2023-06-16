@@ -24,7 +24,7 @@ class RoutardScraper
       p_tag = text_before_first_br
       return [img_src, p_tag.scan(/[^.]*?(?:\.+|\u2026)(?![.])/)]
     rescue
-      RoutardScraperSearch.new(@region, @country).call
+      RoutardScraperCountry.new(@region, @country).call
     end
   end
 end

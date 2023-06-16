@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="row rowalign-item-center justify-content-center">
     <% JSON.parse(@scraping_destination.content).each do |num_desti, destination| %>
-      <div class="cardContainer col-5">
+      <div class="cardContainer col-4">
         <button class="btn" data-bs-toggle="modal" data-bs-target="#myModal<%= num_desti %>">
           <div class="cardWrap" data-controller="card" data-action="mousemove->card#onMousemove mouseout->card#onMouseout">
             <div class="cardBis" data-card-target="card">
@@ -20,6 +20,7 @@
           <div class="modal-dialog" style="max-width: 80vw !important;">
             <div class="modal-content">
               <div class="modal-body">
+
                 <div class="d-flex align-items-center justify-content-center" style="background-image: url(<%= destination["img_src"] %>); background-size: cover; background-position: center; height: 40vh;">
                 <h5 class="modal-title"><%= destination["pays"]%>,  <%= destination["region"]%></h5></div>
                 <div class="d-flex align-items-start justify-content-center pt-3">
