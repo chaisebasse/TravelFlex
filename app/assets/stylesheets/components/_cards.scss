@@ -44,12 +44,12 @@
 .cardBis {
   position: relative;
   flex: 0 0 240px;
-  width: 240px;
-  height: 320px;
+  width: 300px;
+  height: 350px;
   background-color: #333;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.66) 0 10px 10px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
   transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
@@ -64,7 +64,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 1s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   pointer-events: none;
 }
 
@@ -109,4 +109,3 @@
   font-weight: 700;
   text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
 }
-
